@@ -8,6 +8,8 @@ export const mockUpcomingTx = [
     amount: 15000,
     token: 'USDC',
     status: 'Scheduled',
+    description: 'Bridge USDC from Ethereum to Arbitrum for yield farming',
+    scheduledFor: '2024-08-15T10:00:00Z',
   },
   {
     id: 'up2',
@@ -19,6 +21,8 @@ export const mockUpcomingTx = [
     amount: 10000,
     estRate: 0.999,
     status: 'Scheduled',
+    description: 'Swap USDC to DAI for portfolio rebalancing',
+    scheduledFor: '2024-08-16T14:30:00Z',
   },
   {
     id: 'up3',
@@ -29,5 +33,7 @@ export const mockUpcomingTx = [
     amount: 5000,
     token: 'USDT',
     status: 'Pending Approval',
+    description: 'Deposit USDT to Aave on Polygon for lending yield',
+    scheduledFor: '2024-08-20T09:15:00Z',
   },
 ];

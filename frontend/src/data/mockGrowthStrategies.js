@@ -9,6 +9,9 @@ export const mockGrowthStrategies = [
       treasuries: 0,
       defi: 0,
     },
+    expectedApy: 4.2,
+    minInvestment: 10000,
+    risk: 'Low',
   },
   {
     id: 'strategy2',
@@ -21,6 +24,9 @@ export const mockGrowthStrategies = [
       treasuries: 15,
       defi: 5,
     },
+    expectedApy: 6.8,
+    minInvestment: 25000,
+    risk: 'Medium',
   },
   {
     id: 'strategy3',
@@ -33,5 +39,8 @@ export const mockGrowthStrategies = [
       treasuries: 25,
       defi: 15,
     },
+    expectedApy: 9.5,
+    minInvestment: 50000,
+    risk: 'High',
   },
 ];
