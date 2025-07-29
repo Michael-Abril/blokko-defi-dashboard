@@ -1,8 +1,23 @@
-import { Box, Text, VStack } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout/Layout';
+import Dashboard from './pages/Dashboard';
+import Activity from './pages/Activity';
+import Allocation from './pages/Allocation';
+import Bridge from './pages/Bridge';
+import Swap from './pages/Swap';
+import Discovery from './pages/Discovery';
+import AIAccountant from './pages/AIAccountant';
+import AIAgents from './pages/AIAgents';
+import TaxCenter from './pages/TaxCenter';
+import Academy from './pages/Academy';
+import Holdings from './pages/Holdings';
+import Transactions from './pages/Transactions';
+import AIAgentOverlay from './components/AI/AIAgentOverlay';
 
 function App() {
   return (
-    <Box bg="gray.50" color="gray.800" minH="100vh" p={8}>
+    <Box bg="gray.50" color="gray.800" minH="100vh">
       {/* Test message to verify deployment */}
       <Box 
         position="fixed" 
@@ -18,26 +33,27 @@ function App() {
         DEPLOYMENT TEST - {new Date().toLocaleTimeString()}
       </Box>
       
-      {/* Simple test content */}
-      <VStack spacing={6} align="center" justify="center" minH="80vh">
-        <Text fontSize="4xl" fontWeight="bold" color="blue.600">
-          🚀 Blokko DeFi Dashboard
-        </Text>
-        <Text fontSize="xl" color="green.600" fontWeight="semibold">
-          ✅ React App is Loading Successfully!
-        </Text>
-        <Text fontSize="lg" color="gray.600">
-          If you can see this message, the JavaScript is working properly.
-        </Text>
-        <Box p={6} bg="green.100" borderRadius="lg" border="2px solid green.300">
-          <Text fontSize="md" color="green.800" fontWeight="bold">
-            🎉 SUCCESS: The React application is rendering correctly on GitHub Pages!
-          </Text>
-        </Box>
-        <Text fontSize="sm" color="gray.500">
-          Current time: {new Date().toLocaleString()}
-        </Text>
-      </VStack>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="activity" element={<Activity />} />
+            <Route path="allocation" element={<Allocation />} />
+            <Route path="bridge" element={<Bridge />} />
+            <Route path="swap" element={<Swap />} />
+            <Route path="discovery" element={<Discovery />} />
+            <Route path="ai-accountant" element={<AIAccountant />} />
+            <Route path="ai-agents" element={<AIAgents />} />
+            <Route path="tax-center" element={<TaxCenter />} />
+            <Route path="academy" element={<Academy />} />
+            <Route path="holdings" element={<Holdings />} />
+            <Route path="transactions" element={<Transactions />} />
+          </Route>
+        </Routes>
+
+        {/* Global AI Agent Overlay - Now properly inside Router context */}
+        <AIAgentOverlay />
+      </Router>
     </Box>
   );
 }
