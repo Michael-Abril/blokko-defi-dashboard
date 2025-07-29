@@ -23,7 +23,7 @@ const AIAccountant = () => {
 
   return (
     <Box maxW="800px" mx="auto">
-      <Heading mb={10} bgGradient="linear(to-r, gradient.start, gradient.end)" bgClip="text">
+      <Heading mb={10} bgGradient="linear(to-r, blue.500, purple.500)" bgClip="text">
         AI Accountant
       </Heading>
 

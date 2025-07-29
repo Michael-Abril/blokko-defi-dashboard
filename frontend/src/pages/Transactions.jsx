@@ -6,7 +6,7 @@ import TransactionRow from '../components/Dashboard/TransactionRow';
 const Transactions = () => {
   return (
     <Box>
-      <Heading mb={10} bgGradient="linear(to-r, gradient.start, gradient.end)" bgClip="text">Recent Transactions</Heading>
+      <Heading mb={10} bgGradient="linear(to-r, blue.500, purple.500)" bgClip="text">Recent Transactions</Heading>
       <Table variant="simple" bg="white" borderRadius="lg" boxShadow="md">
         <Thead>
           <Tr>
