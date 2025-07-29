@@ -40,7 +40,7 @@ import {
   Pie,
   Cell,
 } from 'recharts';
-import { useMetrics } from '../context/MetricsContext';
+// import { useMetrics } from '../context/MetricsContext';
 import mockPortfolio from '../data/mockPortfolio';
 import mockGrowthStrategies from '../data/mockGrowthStrategies';
 import mockTransactionHistory from '../data/mockTransactionHistory';
@@ -50,7 +50,7 @@ import mockUpcomingTx from '../data/mockUpcomingTx';
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8'];
 
 function Dashboard() {
-  const { metrics } = useMetrics();
+  // const { metrics } = useMetrics();
   const bgColor = useColorModeValue('gray.50', 'gray.900');
   const cardBg = useColorModeValue('white', 'gray.800');
 
