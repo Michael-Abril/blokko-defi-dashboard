@@ -11,6 +11,8 @@ import AIAccountant from './pages/AIAccountant';
 import AIAgents from './pages/AIAgents';
 import TaxCenter from './pages/TaxCenter';
 import Academy from './pages/Academy';
+import Holdings from './pages/Holdings';
+import Transactions from './pages/Transactions';
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
             <Route path="ai-agents" element={<AIAgents />} />
             <Route path="tax-center" element={<TaxCenter />} />
             <Route path="academy" element={<Academy />} />
+            <Route path="holdings" element={<Holdings />} />
+            <Route path="transactions" element={<Transactions />} />
           </Route>
         </Routes>
       </Router>

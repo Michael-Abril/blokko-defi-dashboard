@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
+import { MetricsProvider } from './context/MetricsContext';
 import './index.css';
 import { ChakraProvider } from '@chakra-ui/react';
 import { theme } from './theme';
@@ -25,7 +26,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider>
           <ChakraProvider theme={theme}>
-            <App />
+            <MetricsProvider>
+              <App />
+            </MetricsProvider>
           </ChakraProvider>
         </RainbowKitProvider>
       </QueryClientProvider>

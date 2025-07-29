@@ -1,0 +1,33 @@
+export const mockUpcomingTx = [
+  {
+    id: 'up1',
+    date: '2024-08-15',
+    type: 'Bridge',
+    chainFrom: 'Ethereum',
+    chainTo: 'Arbitrum',
+    amount: 15000,
+    token: 'USDC',
+    status: 'Scheduled',
+  },
+  {
+    id: 'up2',
+    date: '2024-08-16',
+    type: 'Swap',
+    dex: 'Uniswap V3',
+    fromToken: 'USDC',
+    toToken: 'DAI',
+    amount: 10000,
+    estRate: 0.999,
+    status: 'Scheduled',
+  },
+  {
+    id: 'up3',
+    date: '2024-08-20',
+    type: 'Deposit',
+    protocol: 'Aave',
+    chain: 'Polygon',
+    amount: 5000,
+    token: 'USDT',
+    status: 'Pending Approval',
+  },
+];

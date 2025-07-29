@@ -33,6 +33,8 @@ const Header = () => {
       <HStack spacing={8}>
         <NavLink to="/">Dashboard</NavLink>
         <NavLink to="/activity">Activity</NavLink>
+        <NavLink to="/holdings">Holdings</NavLink>
+        <NavLink to="/transactions">Transactions</NavLink>
         <NavLink to="/allocation">Allocation</NavLink>
         <NavLink to="/bridge">Bridge</NavLink>
         <NavLink to="/swap">Swap</NavLink>
