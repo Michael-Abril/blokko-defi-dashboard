@@ -54,6 +54,10 @@ function Dashboard() {
   const bgColor = useColorModeValue('gray.50', 'gray.900');
   const cardBg = useColorModeValue('white', 'gray.800');
 
+  console.log('Dashboard component rendering...');
+  console.log('mockPortfolio:', mockPortfolio);
+  console.log('mockGrowthStrategies:', mockGrowthStrategies);
+
   const portfolioData = [
     { name: 'Jan', value: 200000 },
     { name: 'Feb', value: 220000 },
@@ -92,6 +96,18 @@ function Dashboard() {
             Welcome back! Here's your portfolio overview and latest activity.
           </Text>
         </Box>
+
+        {/* Test Card */}
+        <Card bg="red.100" shadow="md">
+          <CardBody>
+            <Text color="red.800" fontSize="lg" fontWeight="bold">
+              🧪 TEST: If you can see this red card, the Dashboard component is rendering!
+            </Text>
+            <Text color="red.700" fontSize="sm">
+              Portfolio Value: ${mockPortfolio.portfolioValue.toLocaleString()}
+            </Text>
+          </CardBody>
+        </Card>
 
         {/* Key Metrics */}
         <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6}>
