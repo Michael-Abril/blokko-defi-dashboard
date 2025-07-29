@@ -60,14 +60,14 @@ const Holdings = () => {
       <Box className="animate-slide-left">
         <Heading 
           size="2xl" 
-          bgGradient="linear(to-r, brand.500, brand.600)" 
+          bgGradient="linear(to-r, blue.500, blue.600)" 
           bgClip="text"
           fontWeight="800"
           mb={2}
         >
           Holdings
         </Heading>
-        <Text color="text.secondary" fontSize="lg">
+        <Text color="gray.600" fontSize="lg">
           Your multi-chain DeFi portfolio breakdown
         </Text>
       </Box>
