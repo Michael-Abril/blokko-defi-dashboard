@@ -13,7 +13,7 @@ const Bridge = () => {
 
   return (
     <Box>
-      <Heading mb={6} bgGradient="linear(to-r, gradient.start, gradient.end)" bgClip="text">Bridge Allocation</Heading>
+      <Heading mb={6} bgGradient="linear(to-r, blue.500, purple.500)" bgClip="text">Bridge Allocation</Heading>
       <BridgeAllocationMatrix chains={CHAINS} allocations={alloc} setAllocations={setAlloc} />
 
       <Heading size="lg" mt={10} mb={4}>Upcoming Bridges</Heading>

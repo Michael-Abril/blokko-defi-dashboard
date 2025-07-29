@@ -13,7 +13,7 @@ import TaxCenter from './pages/TaxCenter';
 import Academy from './pages/Academy';
 import Holdings from './pages/Holdings';
 import Transactions from './pages/Transactions';
-// import AIAgentOverlay from './components/AI/AIAgentOverlay';
+import AIAgentOverlay from './components/AI/AIAgentOverlay';
 
 function App() {
   return (
@@ -38,7 +38,7 @@ function App() {
       </Router>
       
       {/* Global AI Agent Overlay */}
-      {/* <AIAgentOverlay /> */}
+      <AIAgentOverlay />
     </Box>
   );
 }
