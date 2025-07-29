@@ -127,14 +127,14 @@ const Swap = () => {
       <Box className="animate-slide-left">
         <Heading 
           size="2xl" 
-          bgGradient="linear(to-r, brand.500, secondary.500)" 
+          bgGradient="linear(to-r, blue.500, purple.500)" 
           bgClip="text"
           fontWeight="800"
           mb={2}
         >
           Token Swap
         </Heading>
-        <Text color="text.secondary" fontSize="lg">
+        <Text color="gray.600" fontSize="lg">
           Get the best rates across multiple DEXs
         </Text>
       </Box>

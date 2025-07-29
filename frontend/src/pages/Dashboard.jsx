@@ -169,7 +169,7 @@ const Dashboard = () => {
                 </Pie>
                 <Tooltip 
                   formatter={(value) => [`$${value.toLocaleString()}`, 'Value']}
-                  labelStyle={{ color: 'text.primary' }}
+                  labelStyle={{ color: 'gray.800' }}
                 />
               </PieChart>
             </ResponsiveContainer>
@@ -178,7 +178,7 @@ const Dashboard = () => {
 
         <NeumorphicCard variant="elevated" animation="slide-right">
           <VStack align="stretch" spacing={4}>
-            <Heading size="md" color="text.primary">Allocation by Investment Type</Heading>
+            <Heading size="md" color="gray.800">Allocation by Investment Type</Heading>
             <ResponsiveContainer width="100%" height={300}>
               <PieChart>
                 <Pie 
@@ -197,7 +197,7 @@ const Dashboard = () => {
                 </Pie>
                 <Tooltip 
                   formatter={(value) => [`$${value.toLocaleString()}`, 'Value']}
-                  labelStyle={{ color: 'text.primary' }}
+                  labelStyle={{ color: 'gray.800' }}
                 />
               </PieChart>
             </ResponsiveContainer>
@@ -213,7 +213,7 @@ const Dashboard = () => {
       
       {/* Growth Strategies */}
       <VStack align="stretch" spacing={6}>
-        <Heading size="lg" color="text.primary" className="animate-slide-left">
+        <Heading size="lg" color="gray.800" className="animate-slide-left">
           Growth Strategies
         </Heading>
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={6}>
@@ -234,8 +234,8 @@ const Dashboard = () => {
       <NeumorphicCard variant="default" animation="fade-in">
         <VStack align="stretch" spacing={4}>
           <HStack justify="space-between">
-            <Heading size="md" color="text.primary">Recent Transactions</Heading>
-            <Link as={RouterLink} to="/transactions" color="brand.500" fontWeight="600">
+            <Heading size="md" color="gray.800">Recent Transactions</Heading>
+            <Link as={RouterLink} to="/transactions" color="blue.500" fontWeight="600">
               View all →
             </Link>
           </HStack>
@@ -259,7 +259,7 @@ const Dashboard = () => {
 
       {/* Upcoming Transactions */}
       <VStack align="stretch" spacing={6}>
-        <Heading size="lg" color="text.primary" className="animate-slide-left">
+        <Heading size="lg" color="gray.800" className="animate-slide-left">
           Upcoming Transactions
         </Heading>
         <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
