@@ -5,10 +5,18 @@ import Header from './Header';
 
 const Layout = () => {
   return (
-    <Flex>
+    <Flex direction="column" minH="100vh">
       <Header />
-      <Box pt="72px" flex="1" p={10} as="main">
-          <Outlet />
+      <Box 
+        as="main" 
+        pt={{ base: "80px", md: "88px" }}
+        px={{ base: 4, md: 6, lg: 8 }}
+        pb={8}
+        flex="1"
+        bg="background.primary"
+        className="animate-fade-in"
+      >
+        <Outlet />
       </Box>
     </Flex>
   );

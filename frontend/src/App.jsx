@@ -13,10 +13,11 @@ import TaxCenter from './pages/TaxCenter';
 import Academy from './pages/Academy';
 import Holdings from './pages/Holdings';
 import Transactions from './pages/Transactions';
+import AIAgentOverlay from './components/AI/AIAgentOverlay';
 
 function App() {
   return (
-    <Box bg="brand.background" color="brand.text" minH="100vh">
+    <Box bg="background.primary" color="text.primary" minH="100vh">
       <Router>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -35,6 +36,9 @@ function App() {
           </Route>
         </Routes>
       </Router>
+      
+      {/* Global AI Agent Overlay */}
+      <AIAgentOverlay />
     </Box>
   );
 }
