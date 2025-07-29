@@ -16,7 +16,7 @@ import SwapCard from '../components/Swap/SwapCard';
 import SwapComparisonChart from '../components/Swap/SwapComparisonChart';
 import FeeBreakdown from '../components/Swap/FeeBreakdown';
 import { 
-  TrendingUpIcon, 
+  TriangleUpIcon, 
   CheckCircleIcon, 
   StarIcon,
   SettingsIcon,
@@ -147,7 +147,7 @@ const Swap = () => {
               <Text fontSize="sm" color="text.secondary" fontWeight="500">
                 Total Volume (24h)
               </Text>
-              <Icon as={TrendingUpIcon} color="secondary.500" boxSize={4} />
+                              <Icon as={TriangleUpIcon} color="secondary.500" boxSize={4} />
             </HStack>
             <Text fontSize="2xl" fontWeight="800" color="text.primary">
               $2.4M
