@@ -142,17 +142,17 @@ const Holdings = () => {
                   <Box
                     p={2}
                     borderRadius="lg"
-                    bg="brand.50"
-                    color="brand.500"
+                                bg="blue.50"
+            color="blue.500"
                     className="animate-float"
                   >
                     <Icon as={SettingsIcon} boxSize={5} />
                   </Box>
                   <VStack align="start" spacing={0}>
-                    <Heading size="md" color="text.primary">
+                    <Heading size="md" color="gray.800">
                       {holding.chain}
                     </Heading>
-                    <Text fontSize="sm" color="text.secondary">
+                    <Text fontSize="sm" color="gray.600">
                       {holding.positions.length} positions
                     </Text>
                   </VStack>
@@ -160,10 +160,10 @@ const Holdings = () => {
                 
                 <HStack spacing={3}>
                   <VStack align="end" spacing={0}>
-                    <Text fontSize="lg" fontWeight="700" color="text.primary">
+                    <Text fontSize="lg" fontWeight="700" color="gray.800">
                       ${holding.positions.reduce((sum, p) => sum + p.balance, 0).toLocaleString()}
                     </Text>
-                    <Text fontSize="sm" color="text.secondary">
+                    <Text fontSize="sm" color="gray.600">
                       Total Value
                     </Text>
                   </VStack>
@@ -191,11 +191,11 @@ const Holdings = () => {
       {filtered.length === 0 && (
         <NeumorphicCard variant="default" animation="fade-in">
           <VStack spacing={4} py={8}>
-            <Icon as={ViewIcon} boxSize={12} color="text.tertiary" />
-            <Text fontSize="lg" color="text.secondary" fontWeight="600">
+            <Icon as={ViewIcon} boxSize={12} color="gray.400" />
+            <Text fontSize="lg" color="gray.600" fontWeight="600">
               No holdings found
             </Text>
-            <Text fontSize="sm" color="text.tertiary" textAlign="center">
+            <Text fontSize="sm" color="gray.400" textAlign="center">
               Try adjusting your filters or search terms
             </Text>
           </VStack>
