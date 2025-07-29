@@ -13,7 +13,7 @@ const Layout = () => {
         px={{ base: 4, md: 6, lg: 8 }}
         pb={8}
         flex="1"
-        bg="background.primary"
+        bg="gray.50"
         className="animate-fade-in"
       >
         <Outlet />

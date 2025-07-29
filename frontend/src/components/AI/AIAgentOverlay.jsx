@@ -95,7 +95,7 @@ const AIAgentOverlay = () => {
             aria-label="Open AI Assistant"
             icon={<ChatIcon />}
             size="lg"
-            colorScheme="brand"
+            colorScheme="blue"
             borderRadius="full"
             w="60px"
             h="60px"

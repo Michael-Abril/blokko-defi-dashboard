@@ -39,19 +39,19 @@ const NavLink = ({ to, children, isMobile = false }) => (
     py={isMobile ? 3 : 2}
     borderRadius="lg"
     fontWeight="500"
-    color="text.secondary"
+    color="gray.600"
     _hover={{ 
       textDecoration: 'none', 
-      color: 'brand.500',
-      bg: 'surface.50',
+      color: 'blue.500',
+      bg: 'gray.50',
       transform: 'translateY(-1px)',
-      boxShadow: 'soft.sm'
+      boxShadow: 'md'
     }}
     _activeLink={{ 
-      color: 'brand.500', 
+      color: 'blue.500', 
       fontWeight: '600',
-      bg: 'brand.50',
-      boxShadow: 'soft.md'
+      bg: 'blue.50',
+      boxShadow: 'md'
     }}
     transition="all 0.2s"
   >
@@ -91,7 +91,7 @@ const Header = () => {
         py={4}
         bg={isScrolled ? 'rgba(255, 255, 255, 0.95)' : 'white'}
         backdropFilter={isScrolled ? 'blur(10px)' : 'none'}
-        boxShadow={isScrolled ? 'lg' : 'soft.md'}
+        boxShadow={isScrolled ? 'lg' : 'md'}
         position="fixed"
         top="0"
         left="0"
@@ -105,7 +105,7 @@ const Header = () => {
           <Box
             w="40px"
             h="40px"
-            bg="gradient.brand"
+            bg="blue.500"
             borderRadius="xl"
             display="flex"
             alignItems="center"
@@ -116,10 +116,10 @@ const Header = () => {
             <Text fontSize="lg" fontWeight="800" color="white">B</Text>
           </Box>
           <VStack align="start" spacing={0}>
-            <Text fontSize="xl" fontWeight="800" color="text.primary">
+            <Text fontSize="xl" fontWeight="800" color="gray.800">
               Blokko
             </Text>
-            <Text fontSize="xs" color="text.tertiary" fontWeight="500">
+            <Text fontSize="xs" color="gray.500" fontWeight="500">
               DeFi Dashboard
             </Text>
           </VStack>

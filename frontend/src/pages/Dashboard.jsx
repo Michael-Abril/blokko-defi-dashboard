@@ -24,11 +24,11 @@ import UpcomingTxCard from '../components/Dashboard/UpcomingTxCard';
 import StatCard from '../components/UI/StatCard';
 import NeumorphicCard from '../components/UI/NeumorphicCard';
 import { 
-  DollarSignIcon, 
-  TrendingUpIcon, 
-  ShieldCheckIcon, 
-  ChartBarIcon,
-  WalletIcon,
+  TriangleDownIcon, 
+  ChevronUpIcon, 
+  CheckCircleIcon, 
+  ViewIcon,
+  SettingsIcon,
   StarIcon 
 } from '@chakra-ui/icons';
 
@@ -70,14 +70,14 @@ const Dashboard = () => {
       <Box className="animate-slide-left">
         <Heading 
           size="2xl" 
-          bgGradient="linear(to-r, brand.500, brand.600)" 
+          bgGradient="linear(to-r, blue.500, blue.600)" 
           bgClip="text"
           fontWeight="800"
           mb={2}
         >
           Dashboard
         </Heading>
-        <Text color="text.secondary" fontSize="lg">
+        <Text color="gray.600" fontSize="lg">
           Your comprehensive DeFi portfolio overview
         </Text>
       </Box>
@@ -89,7 +89,7 @@ const Dashboard = () => {
           value={`$${totalStablecoins.toLocaleString()}`}
           change="+2.4%"
           changeType="positive"
-          icon={DollarSignIcon}
+          icon={TriangleDownIcon}
           badge="Live"
           badgeColor="success"
           animation="fade-in"
@@ -99,7 +99,7 @@ const Dashboard = () => {
           value={`$${totalBlokkoTreasury.toLocaleString()}`}
           change="+1.8%"
           changeType="positive"
-          icon={ShieldCheckIcon}
+          icon={CheckCircleIcon}
           badge="Secure"
           badgeColor="brand"
           animation="fade-in"
@@ -109,7 +109,7 @@ const Dashboard = () => {
           value={`$${totalExternalTreasury.toLocaleString()}`}
           change="+3.2%"
           changeType="positive"
-          icon={WalletIcon}
+          icon={SettingsIcon}
           badge="Multi-chain"
           badgeColor="purple"
           animation="fade-in"
@@ -119,7 +119,7 @@ const Dashboard = () => {
           value={`$${totalDefi.toLocaleString()}`}
           change="+5.7%"
           changeType="positive"
-          icon={TrendingUpIcon}
+          icon={ChevronUpIcon}
           badge="High Yield"
           badgeColor="warning"
           animation="fade-in"
@@ -129,7 +129,7 @@ const Dashboard = () => {
           value={`$${portfolioValue.toLocaleString()}`}
           change="+4.1%"
           changeType="positive"
-          icon={ChartBarIcon}
+          icon={ViewIcon}
           badge="Total"
           badgeColor="blue"
           animation="fade-in"
@@ -150,7 +150,7 @@ const Dashboard = () => {
       <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={8}>
         <NeumorphicCard variant="elevated" animation="slide-left">
           <VStack align="stretch" spacing={4}>
-            <Heading size="md" color="text.primary">Allocation by Chain</Heading>
+            <Heading size="md" color="gray.800">Allocation by Chain</Heading>
             <ResponsiveContainer width="100%" height={300}>
               <PieChart>
                 <Pie 

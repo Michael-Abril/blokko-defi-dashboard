@@ -17,11 +17,11 @@ import ProtocolDetailsAccordion from '../components/Holdings/ProtocolDetailsAcco
 import NeumorphicCard from '../components/UI/NeumorphicCard';
 import StatCard from '../components/UI/StatCard';
 import { 
-  TrendingUpIcon, 
-  ShieldCheckIcon, 
+  ChevronUpIcon, 
+  CheckCircleIcon, 
   StarIcon,
-  NetworkIcon,
-  ChartBarIcon
+  SettingsIcon,
+  ViewIcon
 } from '@chakra-ui/icons';
 
 const Holdings = () => {
@@ -79,7 +79,7 @@ const Holdings = () => {
           value={`$${totalValue.toLocaleString()}`}
           change="+3.2%"
           changeType="positive"
-          icon={ChartBarIcon}
+          icon={ViewIcon}
           badge="Live"
           badgeColor="success"
           animation="fade-in"
@@ -89,7 +89,7 @@ const Holdings = () => {
           value={`${averageAPY.toFixed(2)}%`}
           change="+0.5%"
           changeType="positive"
-          icon={TrendingUpIcon}
+          icon={ChevronUpIcon}
           badge="Optimized"
           badgeColor="warning"
           animation="fade-in"
@@ -109,7 +109,7 @@ const Holdings = () => {
           value={chains.length.toString()}
           change=""
           changeType="neutral"
-          icon={NetworkIcon}
+          icon={SettingsIcon}
           badge="Multi-chain"
           badgeColor="purple"
           animation="fade-in"
@@ -146,7 +146,7 @@ const Holdings = () => {
                     color="brand.500"
                     className="animate-float"
                   >
-                    <Icon as={NetworkIcon} boxSize={5} />
+                    <Icon as={SettingsIcon} boxSize={5} />
                   </Box>
                   <VStack align="start" spacing={0}>
                     <Heading size="md" color="text.primary">
@@ -191,7 +191,7 @@ const Holdings = () => {
       {filtered.length === 0 && (
         <NeumorphicCard variant="default" animation="fade-in">
           <VStack spacing={4} py={8}>
-            <Icon as={ChartBarIcon} boxSize={12} color="text.tertiary" />
+            <Icon as={ViewIcon} boxSize={12} color="text.tertiary" />
             <Text fontSize="lg" color="text.secondary" fontWeight="600">
               No holdings found
             </Text>

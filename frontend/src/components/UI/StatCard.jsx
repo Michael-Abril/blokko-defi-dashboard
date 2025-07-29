@@ -21,7 +21,7 @@ const StatCard = ({
       case 'negative':
         return 'error.500';
       default:
-        return 'text.secondary';
+        return 'gray.600';
     }
   };
 
@@ -77,7 +77,7 @@ const StatCard = ({
           <VStack align="start" spacing={1} flex="1">
             <Text
               fontSize={sizeStyles.titleSize}
-              color="text.secondary"
+              color="gray.600"
               fontWeight="500"
             >
               {title}

@@ -12,17 +12,17 @@ const NeumorphicCard = ({
     switch (variant) {
       case 'elevated':
         return {
-          bg: 'surface.100',
-          boxShadow: 'soft.lg',
+          bg: 'gray.50',
+          boxShadow: 'lg',
           _hover: hoverEffect ? {
-            boxShadow: 'soft.xl',
+            boxShadow: 'xl',
             transform: 'translateY(-4px)',
           } : {},
         };
       case 'pressed':
         return {
-          bg: 'surface.100',
-          boxShadow: 'pressed.md',
+          bg: 'gray.50',
+          boxShadow: 'md',
         };
       case 'glass':
         return {
@@ -30,14 +30,14 @@ const NeumorphicCard = ({
           backdropFilter: 'blur(10px)',
           border: '1px solid',
           borderColor: 'rgba(255, 255, 255, 0.2)',
-          boxShadow: 'soft.md',
+          boxShadow: 'md',
         };
       default:
         return {
-          bg: 'surface.100',
-          boxShadow: 'soft.md',
+          bg: 'gray.50',
+          boxShadow: 'md',
           _hover: hoverEffect ? {
-            boxShadow: 'soft.lg',
+            boxShadow: 'lg',
             transform: 'translateY(-2px)',
           } : {},
         };

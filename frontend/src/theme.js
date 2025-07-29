@@ -1,24 +1,38 @@
 import { extendTheme } from '@chakra-ui/react';
 
-// Futuristic Color Palette
+// Futuristic Color Palette - Inspired by blokko-defi-token-swap
 const colors = {
-  // Primary Brand Colors
+  // Primary Brand Colors (from token-swap)
   brand: {
     50: '#E6F3FF',
     100: '#B3D9FF',
     200: '#80BFFF',
     300: '#4DA6FF',
     400: '#1A8CFF',
-    500: '#0072E6', // Primary brand blue
-    600: '#005BB3',
+    500: '#0A2540', // Deep trustworthy blue from token-swap
+    600: '#051726',
     700: '#004480',
     800: '#002D4D',
     900: '#00161A',
   },
   
+  // Secondary Colors (from token-swap)
+  secondary: {
+    50: '#E6FFFD',
+    100: '#B3FFF8',
+    200: '#80FFF3',
+    300: '#4DFFEE',
+    400: '#1AFFE9',
+    500: '#00D4C8', // Vibrant cyan/teal accent from token-swap
+    600: '#00B4A6',
+    700: '#00948C',
+    800: '#007472',
+    900: '#005458',
+  },
+  
   // Neumorphic Surface Colors
   surface: {
-    50: '#F8FAFC',   // Lightest surface
+    50: '#F6F9FC',   // Very light grey/off-white from token-swap
     100: '#F1F5F9',  // Light surface
     200: '#E2E8F0',  // Medium surface
     300: '#CBD5E1',  // Dark surface
@@ -32,7 +46,7 @@ const colors = {
     200: '#BBF7D0',
     300: '#86EFAC',
     400: '#4ADE80',
-    500: '#22C55E', // Success green
+    500: '#10B981', // Success green from token-swap
     600: '#16A34A',
     700: '#15803D',
     800: '#166534',
@@ -45,7 +59,7 @@ const colors = {
     200: '#FDE68A',
     300: '#FCD34D',
     400: '#FBBF24',
-    500: '#F59E0B', // Warning amber
+    500: '#F59E0B', // Warning amber from token-swap
     600: '#D97706',
     700: '#B45309',
     800: '#92400E',
@@ -58,7 +72,7 @@ const colors = {
     200: '#FECACA',
     300: '#FCA5A5',
     400: '#F87171',
-    500: '#EF4444', // Error red
+    500: '#EF4444', // Error red from token-swap
     600: '#DC2626',
     700: '#B91C1C',
     800: '#991B1B',
@@ -67,35 +81,102 @@ const colors = {
   
   // Risk Score Colors
   risk: {
-    low: '#22C55E',    // Green for low risk
+    low: '#10B981',    // Green for low risk
     medium: '#F59E0B', // Amber for medium risk
     high: '#EF4444',   // Red for high risk
   },
   
   // Gradient Colors
   gradient: {
-    primary: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    success: 'linear-gradient(135deg, #4ade80 0%, #22c55e 100%)',
-    warning: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)',
-    error: 'linear-gradient(135deg, #f87171 0%, #ef4444 100%)',
-    brand: 'linear-gradient(135deg, #0072E6 0%, #4DA6FF 100%)',
+    primary: 'linear-gradient(135deg, #0A2540 0%, #1A3A5C 100%)',
+    secondary: 'linear-gradient(135deg, #00D4C8 0%, #00B4A6 100%)',
+    success: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
+    warning: 'linear-gradient(135deg, #F59E0B 0%, #D97706 100%)',
+    error: 'linear-gradient(135deg, #EF4444 0%, #DC2626 100%)',
+    brand: 'linear-gradient(135deg, #0A2540 0%, #00D4C8 100%)',
   },
   
-  // Text Colors
+  // Text Colors (from token-swap)
   text: {
-    primary: '#1E293B',    // Dark slate for primary text
-    secondary: '#64748B',  // Medium slate for secondary text
+    primary: '#0A2540',    // Deep blue from token-swap
+    secondary: '#64748B',  // Medium slate from token-swap
     tertiary: '#94A3B8',   // Light slate for tertiary text
     inverse: '#FFFFFF',    // White for inverse text
   },
   
-  // Background Colors
+  // Background Colors (from token-swap)
   background: {
-    primary: '#F8FAFC',    // Light background
+    primary: '#F6F9FC',    // Very light grey/off-white from token-swap
     secondary: '#F1F5F9',  // Slightly darker background
     tertiary: '#E2E8F0',   // Card background
     overlay: 'rgba(0, 0, 0, 0.5)', // Modal overlay
-  }
+  },
+
+  // Standard Chakra UI colors that might be referenced
+  gray: {
+    50: '#F9FAFB',
+    100: '#F3F4F6',
+    200: '#E5E7EB',
+    300: '#D1D5DB',
+    400: '#9CA3AF',
+    500: '#6B7280',
+    600: '#4B5563',
+    700: '#374151',
+    800: '#1F2937',
+    900: '#111827',
+  },
+
+  blue: {
+    50: '#EFF6FF',
+    100: '#DBEAFE',
+    200: '#BFDBFE',
+    300: '#93C5FD',
+    400: '#60A5FA',
+    500: '#3B82F6',
+    600: '#2563EB',
+    700: '#1D4ED8',
+    800: '#1E40AF',
+    900: '#1E3A8A',
+  },
+
+  green: {
+    50: '#F0FDF4',
+    100: '#DCFCE7',
+    200: '#BBF7D0',
+    300: '#86EFAC',
+    400: '#4ADE80',
+    500: '#22C55E',
+    600: '#16A34A',
+    700: '#15803D',
+    800: '#166534',
+    900: '#14532D',
+  },
+
+  red: {
+    50: '#FEF2F2',
+    100: '#FEE2E2',
+    200: '#FECACA',
+    300: '#FCA5A5',
+    400: '#F87171',
+    500: '#EF4444',
+    600: '#DC2626',
+    700: '#B91C1C',
+    800: '#991B1B',
+    900: '#7F1D1D',
+  },
+
+  yellow: {
+    50: '#FFFBEB',
+    100: '#FEF3C7',
+    200: '#FDE68A',
+    300: '#FCD34D',
+    400: '#FBBF24',
+    500: '#F59E0B',
+    600: '#D97706',
+    700: '#B45309',
+    800: '#92400E',
+    900: '#78350F',
+  },
 };
 
 // Typography Scale
@@ -153,24 +234,24 @@ const radii = {
 const shadows = {
   // Soft shadows for neumorphic effect
   soft: {
-    sm: '2px 2px 4px rgba(0, 0, 0, 0.1), -2px -2px 4px rgba(255, 255, 255, 0.8)',
-    md: '4px 4px 8px rgba(0, 0, 0, 0.1), -4px -4px 8px rgba(255, 255, 255, 0.8)',
-    lg: '8px 8px 16px rgba(0, 0, 0, 0.1), -8px -8px 16px rgba(255, 255, 255, 0.8)',
-    xl: '12px 12px 24px rgba(0, 0, 0, 0.1), -12px -12px 24px rgba(255, 255, 255, 0.8)',
+    sm: '2px 2px 4px rgba(10, 37, 64, 0.1), -2px -2px 4px rgba(255, 255, 255, 0.8)',
+    md: '4px 4px 8px rgba(10, 37, 64, 0.1), -4px -4px 8px rgba(255, 255, 255, 0.8)',
+    lg: '8px 8px 16px rgba(10, 37, 64, 0.1), -8px -8px 16px rgba(255, 255, 255, 0.8)',
+    xl: '12px 12px 24px rgba(10, 37, 64, 0.1), -12px -12px 24px rgba(255, 255, 255, 0.8)',
   },
   // Pressed state shadows
   pressed: {
-    sm: 'inset 2px 2px 4px rgba(0, 0, 0, 0.1), inset -2px -2px 4px rgba(255, 255, 255, 0.8)',
-    md: 'inset 4px 4px 8px rgba(0, 0, 0, 0.1), inset -4px -4px 8px rgba(255, 255, 255, 0.8)',
-    lg: 'inset 8px 8px 16px rgba(0, 0, 0, 0.1), inset -8px -8px 16px rgba(255, 255, 255, 0.8)',
+    sm: 'inset 2px 2px 4px rgba(10, 37, 64, 0.1), inset -2px -2px 4px rgba(255, 255, 255, 0.8)',
+    md: 'inset 4px 4px 8px rgba(10, 37, 64, 0.1), inset -4px -4px 8px rgba(255, 255, 255, 0.8)',
+    lg: 'inset 8px 8px 16px rgba(10, 37, 64, 0.1), inset -8px -8px 16px rgba(255, 255, 255, 0.8)',
   },
   // Regular shadows for depth
-  base: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
-  md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-  lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-  xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-  '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-  outline: '0 0 0 3px rgba(0, 114, 230, 0.6)',
+  base: '0 1px 3px 0 rgba(10, 37, 64, 0.1), 0 1px 2px 0 rgba(10, 37, 64, 0.06)',
+  md: '0 4px 6px -1px rgba(10, 37, 64, 0.1), 0 2px 4px -1px rgba(10, 37, 64, 0.06)',
+  lg: '0 10px 15px -3px rgba(10, 37, 64, 0.1), 0 4px 6px -2px rgba(10, 37, 64, 0.05)',
+  xl: '0 20px 25px -5px rgba(10, 37, 64, 0.1), 0 10px 10px -5px rgba(10, 37, 64, 0.04)',
+  '2xl': '0 25px 50px -12px rgba(10, 37, 64, 0.25)',
+  outline: '0 0 0 3px rgba(0, 212, 200, 0.6)',
   none: 'none',
 };
 
@@ -209,11 +290,25 @@ const components = {
         },
       },
       'neumorphic-primary': {
-        bg: 'brand.500',
+        bg: 'gradient.primary',
         color: 'white',
         boxShadow: 'soft.md',
         _hover: {
-          bg: 'brand.600',
+          bg: 'gradient.primary',
+          boxShadow: 'soft.lg',
+          transform: 'translateY(-1px)',
+        },
+        _active: {
+          boxShadow: 'pressed.md',
+          transform: 'translateY(0px)',
+        },
+      },
+      'neumorphic-secondary': {
+        bg: 'gradient.secondary',
+        color: 'white',
+        boxShadow: 'soft.md',
+        _hover: {
+          bg: 'gradient.secondary',
           boxShadow: 'soft.lg',
           transform: 'translateY(-1px)',
         },
@@ -223,11 +318,11 @@ const components = {
         },
       },
       'neumorphic-success': {
-        bg: 'success.500',
+        bg: 'gradient.success',
         color: 'white',
         boxShadow: 'soft.md',
         _hover: {
-          bg: 'success.600',
+          bg: 'gradient.success',
           boxShadow: 'soft.lg',
           transform: 'translateY(-1px)',
         },
@@ -306,7 +401,7 @@ const components = {
         borderColor: 'surface.300',
         borderRadius: 'lg',
         _focus: {
-          borderColor: 'brand.500',
+          borderColor: 'secondary.500',
           boxShadow: 'outline',
         },
         _hover: {
@@ -324,7 +419,7 @@ const components = {
         borderColor: 'surface.300',
         borderRadius: 'lg',
         _focus: {
-          borderColor: 'brand.500',
+          borderColor: 'secondary.500',
           boxShadow: 'outline',
         },
         _hover: {

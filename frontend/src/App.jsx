@@ -17,7 +17,7 @@ import AIAgentOverlay from './components/AI/AIAgentOverlay';
 
 function App() {
   return (
-    <Box bg="background.primary" color="text.primary" minH="100vh">
+    <Box bg="gray.50" color="gray.800" minH="100vh">
       <Router>
         <Routes>
           <Route path="/" element={<Layout />}>

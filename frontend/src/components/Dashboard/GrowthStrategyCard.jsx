@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Heading, Text, Progress, HStack, VStack, Badge, Icon } from '@chakra-ui/react';
 import NeumorphicCard from '../UI/NeumorphicCard';
-import { TrendingUpIcon, ShieldCheckIcon, StarIcon } from '@chakra-ui/icons';
+import { ChevronUpIcon, CheckCircleIcon, StarIcon } from '@chakra-ui/icons';
 
 const AllocationBar = ({ label, percent, color, icon }) => (
   <VStack align="stretch" spacing={2}>
@@ -36,8 +36,8 @@ const GrowthStrategyCard = ({ strategy, animation = 'fade-in' }) => {
   const { name, headline, description, allocations } = strategy;
 
   const getStrategyIcon = () => {
-    if (allocations.defi > 10) return TrendingUpIcon;
-    if (allocations.treasuries > 10) return ShieldCheckIcon;
+    if (allocations.defi > 10) return ChevronUpIcon;
+    if (allocations.treasuries > 10) return CheckCircleIcon;
     return StarIcon;
   };
 
@@ -97,13 +97,13 @@ const GrowthStrategyCard = ({ strategy, animation = 'fade-in' }) => {
             label="Treasuries" 
             percent={allocations.treasuries} 
             color="blue" 
-            icon={ShieldCheckIcon}
+            icon={CheckCircleIcon}
           />
           <AllocationBar 
             label="DeFi" 
             percent={allocations.defi} 
             color="purple" 
-            icon={TrendingUpIcon}
+            icon={ChevronUpIcon}
           />
         </VStack>
 
