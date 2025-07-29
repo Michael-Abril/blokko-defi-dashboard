@@ -35,10 +35,10 @@ function App() {
             <Route path="transactions" element={<Transactions />} />
           </Route>
         </Routes>
-      </Router>
 
-      {/* Global AI Agent Overlay */}
-      <AIAgentOverlay />
+        {/* Global AI Agent Overlay - Now inside Router context */}
+        <AIAgentOverlay />
+      </Router>
     </Box>
   );
 }
