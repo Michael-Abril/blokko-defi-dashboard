@@ -163,16 +163,16 @@ const Bridge = () => {
       case 0:
         return (
           <VStack spacing={6} align="stretch">
-            <Card variant="glass">
+            <Card bg="white" shadow="md">
               <CardHeader>
-                <Text fontSize="lg" fontWeight="bold" color="text.primary">
+                <Text fontSize="lg" fontWeight="bold" color="gray.800">
                   Source Chain & Token
                 </Text>
               </CardHeader>
               <CardBody>
                 <VStack spacing={4} align="stretch">
                   <Box>
-                    <Text fontSize="sm" color="text.secondary" mb={2}>
+                    <Text fontSize="sm" color="gray.600" mb={2}>
                       Select Source Chain
                     </Text>
                     <Select
@@ -190,7 +190,7 @@ const Bridge = () => {
                   </Box>
 
                   <Box>
-                    <Text fontSize="sm" color="text.secondary" mb={2}>
+                    <Text fontSize="sm" color="gray.600" mb={2}>
                       Select Token
                     </Text>
                     <Select
@@ -208,7 +208,7 @@ const Bridge = () => {
                   </Box>
 
                   <Box>
-                    <Text fontSize="sm" color="text.secondary" mb={2}>
+                    <Text fontSize="sm" color="gray.600" mb={2}>
                       Amount
                     </Text>
                     <Input
@@ -228,16 +228,16 @@ const Bridge = () => {
       case 1:
         return (
           <VStack spacing={6} align="stretch">
-            <Card variant="glass">
+            <Card bg="white" shadow="md">
               <CardHeader>
-                <Text fontSize="lg" fontWeight="bold" color="text.primary">
+                <Text fontSize="lg" fontWeight="bold" color="gray.800">
                   Destination Chain
                 </Text>
               </CardHeader>
               <CardBody>
                 <VStack spacing={4} align="stretch">
                   <Box>
-                    <Text fontSize="sm" color="text.secondary" mb={2}>
+                    <Text fontSize="sm" color="gray.600" mb={2}>
                       Select Destination Chain
                     </Text>
                     <Select
@@ -256,24 +256,24 @@ const Bridge = () => {
 
                   {/* Bridge Preview */}
                   {destinationChain && (
-                    <Card variant="neon">
+                    <Card bg="white" shadow="md" border="1px solid" borderColor="blue.200">
                       <CardBody>
                         <VStack spacing={3} align="stretch">
                           <HStack justify="space-between">
-                            <Text fontSize="sm" color="text.secondary">Estimated Fee</Text>
-                            <Text fontSize="sm" fontWeight="bold" color="text.primary">
+                            <Text fontSize="sm" color="gray.600">Estimated Fee</Text>
+                            <Text fontSize="sm" fontWeight="bold" color="gray.800">
                               ${calculateFee()}
                             </Text>
                           </HStack>
                           <HStack justify="space-between">
-                            <Text fontSize="sm" color="text.secondary">Estimated Time</Text>
-                            <Text fontSize="sm" fontWeight="bold" color="text.primary">
+                            <Text fontSize="sm" color="gray.600">Estimated Time</Text>
+                            <Text fontSize="sm" fontWeight="bold" color="gray.800">
                               {calculateTime()}
                             </Text>
                           </HStack>
                           <HStack justify="space-between">
-                            <Text fontSize="sm" color="text.secondary">You'll Receive</Text>
-                            <Text fontSize="sm" fontWeight="bold" color="success.500">
+                            <Text fontSize="sm" color="gray.600">You'll Receive</Text>
+                            <Text fontSize="sm" fontWeight="bold" color="green.500">
                               {amount} {getTokenSymbol(token)}
                             </Text>
                           </HStack>
@@ -290,23 +290,23 @@ const Bridge = () => {
       case 2:
         return (
           <VStack spacing={6} align="stretch">
-            <Card variant="glass">
+            <Card bg="white" shadow="md">
               <CardHeader>
-                <Text fontSize="lg" fontWeight="bold" color="text.primary">
+                <Text fontSize="lg" fontWeight="bold" color="gray.800">
                   Review Bridge Details
                 </Text>
               </CardHeader>
               <CardBody>
                 <VStack spacing={6} align="stretch">
                   {/* Bridge Summary */}
-                  <Card variant="neon">
+                  <Card bg="white" shadow="md" border="1px solid" borderColor="blue.200">
                     <CardBody>
                       <VStack spacing={4} align="stretch">
                         <HStack justify="space-between">
-                          <Text fontSize="lg" fontWeight="bold" color="text.primary">
+                          <Text fontSize="lg" fontWeight="bold" color="gray.800">
                             Bridge Summary
                           </Text>
-                          <Badge colorScheme="secondary" variant="neon">
+                          <Badge colorScheme="blue" variant="subtle">
                             Ready
                           </Badge>
                         </HStack>
@@ -315,7 +315,7 @@ const Bridge = () => {
                         
                         <SimpleGrid columns={2} spacing={4}>
                           <VStack align="start" spacing={1}>
-                            <Text fontSize="sm" color="text.secondary">From</Text>
+                            <Text fontSize="sm" color="gray.600">From</Text>
                             <HStack>
                               <Text fontSize="2xl">{getChainIcon(sourceChain)}</Text>
                               <Text fontWeight="bold">{getChainName(sourceChain)}</Text>
@@ -323,7 +323,7 @@ const Bridge = () => {
                           </VStack>
                           
                           <VStack align="end" spacing={1}>
-                            <Text fontSize="sm" color="text.secondary">To</Text>
+                            <Text fontSize="sm" color="gray.600">To</Text>
                             <HStack>
                               <Text fontWeight="bold">{getChainName(destinationChain)}</Text>
                               <Text fontSize="2xl">{getChainIcon(destinationChain)}</Text>
@@ -335,20 +335,20 @@ const Bridge = () => {
                         
                         <VStack spacing={2} align="stretch">
                           <HStack justify="space-between">
-                            <Text fontSize="sm" color="text.secondary">Amount</Text>
-                            <Text fontSize="sm" fontWeight="bold" color="text.primary">
+                            <Text fontSize="sm" color="gray.600">Amount</Text>
+                            <Text fontSize="sm" fontWeight="bold" color="gray.800">
                               {amount} {getTokenSymbol(token)}
                             </Text>
                           </HStack>
                           <HStack justify="space-between">
-                            <Text fontSize="sm" color="text.secondary">Bridge Fee</Text>
-                            <Text fontSize="sm" fontWeight="bold" color="text.primary">
+                            <Text fontSize="sm" color="gray.600">Bridge Fee</Text>
+                            <Text fontSize="sm" fontWeight="bold" color="gray.800">
                               ${calculateFee()}
                             </Text>
                           </HStack>
                           <HStack justify="space-between">
-                            <Text fontSize="sm" color="text.secondary">Estimated Time</Text>
-                            <Text fontSize="sm" fontWeight="bold" color="text.primary">
+                            <Text fontSize="sm" color="gray.600">Estimated Time</Text>
+                            <Text fontSize="sm" fontWeight="bold" color="gray.800">
                               {calculateTime()}
                             </Text>
                           </HStack>
@@ -358,14 +358,14 @@ const Bridge = () => {
                   </Card>
 
                   {/* Auto-Allocate Toggle */}
-                  <Card variant="glass">
+                  <Card bg="white" shadow="md">
                     <CardBody>
                       <HStack justify="space-between">
                         <VStack align="start" spacing={1}>
-                          <Text fontSize="sm" fontWeight="bold" color="text.primary">
+                          <Text fontSize="sm" fontWeight="bold" color="gray.800">
                             Auto-Allocate After Bridge
                           </Text>
-                          <Text fontSize="xs" color="text.secondary">
+                          <Text fontSize="xs" color="gray.600">
                             Automatically allocate bridged funds to optimal protocols
                           </Text>
                         </VStack>
@@ -388,9 +388,9 @@ const Bridge = () => {
       case 3:
         return (
           <VStack spacing={6} align="stretch">
-            <Card variant="glass">
+            <Card bg="white" shadow="md">
               <CardHeader>
-                <Text fontSize="lg" fontWeight="bold" color="text.primary">
+                <Text fontSize="lg" fontWeight="bold" color="gray.800">
                   Bridge Progress
                 </Text>
               </CardHeader>
@@ -399,9 +399,9 @@ const Bridge = () => {
                   {/* Progress Indicator */}
                   <Box>
                     <HStack justify="space-between" mb={2}>
-                      <Text fontSize="sm" color="text.secondary">Bridge Progress</Text>
+                      <Text fontSize="sm" color="gray.600">Bridge Progress</Text>
                       <Badge
-                        colorScheme={bridgeStatus === 'completed' ? 'success' : bridgeStatus === 'processing' ? 'warning' : 'info'}
+                        colorScheme={bridgeStatus === 'completed' ? 'green' : bridgeStatus === 'processing' ? 'yellow' : 'blue'}
                         variant="subtle"
                       >
                         {bridgeStatus === 'completed' ? 'Completed' : bridgeStatus === 'processing' ? 'Processing' : 'Pending'}
@@ -409,7 +409,7 @@ const Bridge = () => {
                     </HStack>
                     <Progress
                       value={bridgeStatus === 'completed' ? 100 : bridgeStatus === 'processing' ? 60 : 20}
-                      colorScheme={bridgeStatus === 'completed' ? 'success' : 'secondary'}
+                      colorScheme={bridgeStatus === 'completed' ? 'green' : 'blue'}
                       size="lg"
                       borderRadius="full"
                     />
@@ -420,27 +420,27 @@ const Bridge = () => {
                     <ListItem>
                       <ListIcon
                         as={bridgeStatus === 'pending' ? TimeIcon : CheckCircleIcon}
-                        color={bridgeStatus === 'pending' ? 'warning.500' : 'success.500'}
+                        color={bridgeStatus === 'pending' ? 'yellow.500' : 'green.500'}
                       />
-                      <Text fontSize="sm" color="text.secondary">
+                      <Text fontSize="sm" color="gray.600">
                         Initiating bridge transaction...
                       </Text>
                     </ListItem>
                     <ListItem>
                       <ListIcon
                         as={bridgeStatus === 'processing' || bridgeStatus === 'completed' ? CheckCircleIcon : TimeIcon}
-                        color={bridgeStatus === 'processing' || bridgeStatus === 'completed' ? 'success.500' : 'gray.400'}
+                        color={bridgeStatus === 'processing' || bridgeStatus === 'completed' ? 'green.500' : 'gray.400'}
                       />
-                      <Text fontSize="sm" color="text.secondary">
+                      <Text fontSize="sm" color="gray.600">
                         Transaction confirmed on source chain
                       </Text>
                     </ListItem>
                     <ListItem>
                       <ListIcon
                         as={bridgeStatus === 'completed' ? CheckCircleIcon : TimeIcon}
-                        color={bridgeStatus === 'completed' ? 'success.500' : 'gray.400'}
+                        color={bridgeStatus === 'completed' ? 'green.500' : 'gray.400'}
                       />
-                      <Text fontSize="sm" color="text.secondary">
+                      <Text fontSize="sm" color="gray.600">
                         Funds received on destination chain
                       </Text>
                     </ListItem>
@@ -475,20 +475,20 @@ const Bridge = () => {
       <Box>
         <Heading 
           size="2xl" 
-          bgGradient="linear(to-r, brand.500, secondary.500)" 
+          bgGradient="linear(to-r, blue.500, purple.500)" 
           bgClip="text"
           fontWeight="800"
           mb={2}
         >
           Bridge Assets
         </Heading>
-        <Text color="text.secondary" fontSize="lg">
+        <Text color="gray.600" fontSize="lg">
           Seamlessly bridge assets across multiple chains
         </Text>
       </Box>
 
       {/* Stepper Progress */}
-      <Card variant="glass">
+      <Card bg="white" shadow="md">
         <CardBody>
           <VStack spacing={6} align="stretch">
             {/* Step Indicators */}
@@ -499,7 +499,7 @@ const Bridge = () => {
                     w="40px"
                     h="40px"
                     borderRadius="full"
-                    bg={index <= currentStep ? 'secondary.500' : 'gray.200'}
+                    bg={index <= currentStep ? 'blue.500' : 'gray.200'}
                     color={index <= currentStep ? 'white' : 'gray.500'}
                     display="flex"
                     alignItems="center"
@@ -507,7 +507,7 @@ const Bridge = () => {
                     fontWeight="bold"
                     mx="auto"
                     mb={2}
-                    boxShadow={index <= currentStep ? 'neon' : 'none'}
+                    boxShadow={index <= currentStep ? 'lg' : 'none'}
                   >
                     {index < currentStep ? (
                       <CheckCircleIcon boxSize={5} />
@@ -515,11 +515,11 @@ const Bridge = () => {
                       index + 1
                     )}
                   </Box>
-                  <Text fontSize="xs" fontWeight="bold" color={index <= currentStep ? 'text.primary' : 'text.secondary'}>
+                  <Text fontSize="xs" fontWeight="bold" color={index <= currentStep ? 'gray.800' : 'gray.600'}>
                     {step.title}
                   </Text>
                   {!isMobile && (
-                    <Text fontSize="xs" color="text.secondary">
+                    <Text fontSize="xs" color="gray.600">
                       {step.description}
                     </Text>
                   )}
@@ -530,7 +530,7 @@ const Bridge = () => {
             {/* Progress Bar */}
             <Progress
               value={(currentStep / (steps.length - 1)) * 100}
-              colorScheme="secondary"
+              colorScheme="blue"
               size="sm"
               borderRadius="full"
             />
@@ -547,7 +547,7 @@ const Bridge = () => {
           leftIcon={<ChevronLeftIcon />}
           onClick={handleBack}
           isDisabled={currentStep === 0}
-          variant="glass"
+          variant="outline"
         >
           Back
         </Button>
@@ -561,6 +561,7 @@ const Bridge = () => {
               (currentStep === 1 && !destinationChain)
             }
             variant="solid"
+            colorScheme="blue"
           >
             Next
           </Button>
@@ -571,7 +572,7 @@ const Bridge = () => {
             loadingText="Bridging..."
             isDisabled={bridgeStatus === 'completed'}
             variant="solid"
-            colorScheme="secondary"
+            colorScheme="blue"
           >
             {bridgeStatus === 'completed' ? 'Bridge Completed' : 'Execute Bridge'}
           </Button>

@@ -34,8 +34,6 @@ import {
   Divider,
 } from '@chakra-ui/react';
 import { mockPortfolio } from '../data/mockPortfolio';
-import HoldingsFilter from '../components/Holdings/HoldingsFilter';
-import ProtocolDetailsAccordion from '../components/Holdings/ProtocolDetailsAccordion';
 import { 
   ChevronUpIcon, 
   CheckCircleIcon, 
@@ -80,9 +78,9 @@ const Holdings = () => {
 
   const getRiskColor = (risk) => {
     switch (risk?.toLowerCase()) {
-      case 'low': return 'success';
-      case 'medium': return 'warning';
-      case 'high': return 'error';
+      case 'low': return 'green';
+      case 'medium': return 'yellow';
+      case 'high': return 'red';
       default: return 'gray';
     }
   };
@@ -106,14 +104,14 @@ const Holdings = () => {
       <Box>
         <Heading 
           size="2xl" 
-          bgGradient="linear(to-r, brand.500, secondary.500)" 
+          bgGradient="linear(to-r, blue.500, purple.500)" 
           bgClip="text"
           fontWeight="800"
           mb={2}
         >
           Holdings
         </Heading>
-        <Text color="text.secondary" fontSize="lg">
+        <Text color="gray.600" fontSize="lg">
           Your multi-chain DeFi portfolio breakdown
         </Text>
       </Box>
@@ -123,8 +121,8 @@ const Holdings = () => {
         <Card variant="glass">
           <CardBody>
             <Stat>
-              <StatLabel color="text.secondary" fontSize="sm">Total Portfolio Value</StatLabel>
-              <StatNumber fontSize="2xl" fontWeight="bold" color="text.primary">
+              <StatLabel color="gray.600" fontSize="sm">Total Portfolio Value</StatLabel>
+              <StatNumber fontSize="2xl" fontWeight="bold" color="gray.800">
                 ${totalValue.toLocaleString()}
               </StatNumber>
               <StatHelpText>
@@ -138,8 +136,8 @@ const Holdings = () => {
         <Card variant="glass">
           <CardBody>
             <Stat>
-              <StatLabel color="text.secondary" fontSize="sm">Average APY</StatLabel>
-              <StatNumber fontSize="2xl" fontWeight="bold" color="success.500">
+              <StatLabel color="gray.600" fontSize="sm">Average APY</StatLabel>
+              <StatNumber fontSize="2xl" fontWeight="bold" color="green.500">
                 {averageAPY.toFixed(2)}%
               </StatNumber>
               <StatHelpText>
@@ -153,8 +151,8 @@ const Holdings = () => {
         <Card variant="glass">
           <CardBody>
             <Stat>
-              <StatLabel color="text.secondary" fontSize="sm">Active Positions</StatLabel>
-              <StatNumber fontSize="2xl" fontWeight="bold" color="text.primary">
+              <StatLabel color="gray.600" fontSize="sm">Active Positions</StatLabel>
+              <StatNumber fontSize="2xl" fontWeight="bold" color="gray.800">
                 {totalPositions}
               </StatNumber>
               <StatHelpText>
@@ -167,8 +165,8 @@ const Holdings = () => {
         <Card variant="glass">
           <CardBody>
             <Stat>
-              <StatLabel color="text.secondary" fontSize="sm">Risk Score</StatLabel>
-              <StatNumber fontSize="2xl" fontWeight="bold" color="warning.500">
+              <StatLabel color="gray.600" fontSize="sm">Risk Score</StatLabel>
+              <StatNumber fontSize="2xl" fontWeight="bold" color="yellow.500">
                 24
               </StatNumber>
               <StatHelpText>
@@ -197,7 +195,7 @@ const Holdings = () => {
             
             <InputGroup maxW="300px" size="sm">
               <InputLeftElement pointerEvents="none">
-                <SearchIcon color="text.secondary" />
+                <SearchIcon color="gray.500" />
               </InputLeftElement>
               <Input
                 placeholder="Search protocols..."
@@ -228,19 +226,19 @@ const Holdings = () => {
                       <HStack spacing={3}>
                         <Avatar size="sm" name={chain.chain} src="" />
                         <VStack align="start" spacing={0}>
-                          <Text fontWeight="bold" color="text.primary">
+                          <Text fontWeight="bold" color="gray.800">
                             {chain.chain}
                           </Text>
-                          <Text fontSize="sm" color="text.secondary">
+                          <Text fontSize="sm" color="gray.600">
                             {chain.positions.length} positions
                           </Text>
                         </VStack>
                       </HStack>
                       <VStack align="end" spacing={0}>
-                        <Text fontWeight="bold" color="text.primary">
+                        <Text fontWeight="bold" color="gray.800">
                           ${chain.positions.reduce((sum, p) => sum + p.balance, 0).toLocaleString()}
                         </Text>
-                        <Text fontSize="sm" color="text.secondary">
+                        <Text fontSize="sm" color="gray.600">
                           {chain.positions.reduce((sum, p) => sum + (p.apy || 0), 0) / chain.positions.length}% APY
                         </Text>
                       </VStack>
@@ -252,20 +250,20 @@ const Holdings = () => {
                         <Box
                           key={position.name}
                           p={4}
-                          bg="glass.50"
+                          bg="gray.50"
                           borderRadius="lg"
                           border="1px solid"
-                          borderColor="glass.200"
+                          borderColor="gray.200"
                           _hover={{
-                            bg: 'glass.100',
-                            borderColor: 'secondary.200',
+                            bg: 'gray.100',
+                            borderColor: 'blue.200',
                             transform: 'translateY(-2px)',
-                            boxShadow: 'neon',
+                            boxShadow: 'lg',
                           }}
                           transition="all 0.2s"
                         >
                           <HStack justify="space-between" mb={2}>
-                            <Text fontWeight="600" color="text.primary">
+                            <Text fontWeight="600" color="gray.800">
                               {position.name}
                             </Text>
                             <Badge
@@ -278,13 +276,13 @@ const Holdings = () => {
                           </HStack>
                           
                           <VStack align="start" spacing={1}>
-                            <Text fontSize="sm" color="text.secondary">
+                            <Text fontSize="sm" color="gray.600">
                               Balance: ${position.balance.toLocaleString()}
                             </Text>
-                            <Text fontSize="sm" color="text.secondary">
+                            <Text fontSize="sm" color="gray.600">
                               APY: {position.apy || 0}%
                             </Text>
-                            <Text fontSize="sm" color="text.secondary">
+                            <Text fontSize="sm" color="gray.600">
                               Category: {position.category}
                             </Text>
                           </VStack>
@@ -307,10 +305,10 @@ const Holdings = () => {
                       <HStack spacing={3}>
                         <Text fontSize="2xl">{getChainIcon(chain.chain)}</Text>
                         <VStack align="start" spacing={0}>
-                          <Text fontWeight="bold" color="text.primary">
+                          <Text fontWeight="bold" color="gray.800">
                             {chain.chain}
                           </Text>
-                          <Text fontSize="sm" color="text.secondary">
+                          <Text fontSize="sm" color="gray.600">
                             {chain.positions.length} positions
                           </Text>
                         </VStack>
@@ -321,14 +319,14 @@ const Holdings = () => {
                     <VStack spacing={4} align="stretch">
                       <Box>
                         <HStack justify="space-between" mb={2}>
-                          <Text fontSize="sm" color="text.secondary">Total Value</Text>
-                          <Text fontSize="sm" fontWeight="bold" color="text.primary">
+                          <Text fontSize="sm" color="gray.600">Total Value</Text>
+                          <Text fontSize="sm" fontWeight="bold" color="gray.800">
                             ${chain.positions.reduce((sum, p) => sum + p.balance, 0).toLocaleString()}
                           </Text>
                         </HStack>
                         <Progress
                           value={chain.positions.reduce((sum, p) => sum + p.balance, 0) / totalValue * 100}
-                          colorScheme="secondary"
+                          colorScheme="blue"
                           borderRadius="full"
                           size="sm"
                         />
@@ -336,8 +334,8 @@ const Holdings = () => {
                       
                       <Box>
                         <HStack justify="space-between" mb={2}>
-                          <Text fontSize="sm" color="text.secondary">Average APY</Text>
-                          <Text fontSize="sm" fontWeight="bold" color="success.500">
+                          <Text fontSize="sm" color="gray.600">Average APY</Text>
+                          <Text fontSize="sm" fontWeight="bold" color="green.500">
                             {(chain.positions.reduce((sum, p) => sum + (p.apy || 0), 0) / chain.positions.length).toFixed(2)}%
                           </Text>
                         </HStack>
@@ -364,20 +362,20 @@ const Holdings = () => {
                       <HStack spacing={4}>
                         <Avatar size="md" name={position.name} src="" />
                         <VStack align="start" spacing={1}>
-                          <Text fontWeight="bold" color="text.primary">
+                          <Text fontWeight="bold" color="gray.800">
                             {position.name}
                           </Text>
-                          <Text fontSize="sm" color="text.secondary">
+                          <Text fontSize="sm" color="gray.600">
                             {position.chain} • {position.category}
                           </Text>
                         </VStack>
                       </HStack>
                       
                       <VStack align="end" spacing={1}>
-                        <Text fontWeight="bold" color="text.primary">
+                        <Text fontWeight="bold" color="gray.800">
                           ${position.balance.toLocaleString()}
                         </Text>
-                        <Text fontSize="sm" color="success.500">
+                        <Text fontSize="sm" color="green.500">
                           {position.apy || 0}% APY
                         </Text>
                         <Badge

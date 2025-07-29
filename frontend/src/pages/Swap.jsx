@@ -9,9 +9,10 @@ import {
   Badge,
   Icon,
   useToast,
+  Card,
+  CardBody,
 } from '@chakra-ui/react';
 import { useAccount } from 'wagmi';
-import NeumorphicCard from '../components/UI/NeumorphicCard';
 import SwapCard from '../components/Swap/SwapCard';
 import SwapComparisonChart from '../components/Swap/SwapComparisonChart';
 import FeeBreakdown from '../components/Swap/FeeBreakdown';
@@ -124,194 +125,214 @@ const Swap = () => {
   return (
     <VStack spacing={8} align="stretch">
       {/* Page Header */}
-      <Box className="animate-slide-left">
+      <Box>
         <Heading 
           size="2xl" 
-          bgGradient="linear(to-r, brand.500, secondary.500)" 
+          bgGradient="linear(to-r, blue.500, purple.500)" 
           bgClip="text"
           fontWeight="800"
           mb={2}
         >
           Token Swap
         </Heading>
-        <Text color="text.secondary" fontSize="lg">
+        <Text color="gray.600" fontSize="lg">
           Get the best rates across multiple DEXs
         </Text>
       </Box>
 
       {/* Swap Stats */}
       <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6}>
-        <NeumorphicCard variant="default" animation="fade-in">
-          <VStack align="stretch" spacing={3}>
-            <HStack justify="space-between">
-              <Text fontSize="sm" color="text.secondary" fontWeight="500">
-                Total Volume (24h)
+        <Card bg="white" shadow="md">
+          <CardBody>
+            <VStack align="stretch" spacing={3}>
+              <HStack justify="space-between">
+                <Text fontSize="sm" color="gray.600" fontWeight="500">
+                  Total Volume (24h)
+                </Text>
+                <Icon as={TriangleUpIcon} color="purple.500" boxSize={4} />
+              </HStack>
+              <Text fontSize="2xl" fontWeight="800" color="gray.800">
+                $2.4M
               </Text>
-                              <Icon as={TriangleUpIcon} color="secondary.500" boxSize={4} />
-            </HStack>
-            <Text fontSize="2xl" fontWeight="800" color="text.primary">
-              $2.4M
-            </Text>
-            <Text fontSize="sm" color="success.500" fontWeight="600">
-              ↗ +12.5%
-            </Text>
-          </VStack>
-        </NeumorphicCard>
+              <Text fontSize="sm" color="green.500" fontWeight="600">
+                ↗ +12.5%
+              </Text>
+            </VStack>
+          </CardBody>
+        </Card>
 
-        <NeumorphicCard variant="default" animation="fade-in">
-          <VStack align="stretch" spacing={3}>
-            <HStack justify="space-between">
-              <Text fontSize="sm" color="text.secondary" fontWeight="500">
-                Successful Swaps
+        <Card bg="white" shadow="md">
+          <CardBody>
+            <VStack align="stretch" spacing={3}>
+              <HStack justify="space-between">
+                <Text fontSize="sm" color="gray.600" fontWeight="500">
+                  Successful Swaps
+                </Text>
+                <Icon as={CheckCircleIcon} color="green.500" boxSize={4} />
+              </HStack>
+              <Text fontSize="2xl" fontWeight="800" color="gray.800">
+                1,247
               </Text>
-              <Icon as={CheckCircleIcon} color="success.500" boxSize={4} />
-            </HStack>
-            <Text fontSize="2xl" fontWeight="800" color="text.primary">
-              1,247
-            </Text>
-            <Text fontSize="sm" color="success.500" fontWeight="600">
-              ↗ +8.3%
-            </Text>
-          </VStack>
-        </NeumorphicCard>
+              <Text fontSize="sm" color="green.500" fontWeight="600">
+                ↗ +8.3%
+              </Text>
+            </VStack>
+          </CardBody>
+        </Card>
 
-        <NeumorphicCard variant="default" animation="fade-in">
-          <VStack align="stretch" spacing={3}>
-            <HStack justify="space-between">
-              <Text fontSize="sm" color="text.secondary" fontWeight="500">
-                Average Gas Saved
+        <Card bg="white" shadow="md">
+          <CardBody>
+            <VStack align="stretch" spacing={3}>
+              <HStack justify="space-between">
+                <Text fontSize="sm" color="gray.600" fontWeight="500">
+                  Average Gas Saved
+                </Text>
+                <Icon as={SettingsIcon} color="yellow.500" boxSize={4} />
+              </HStack>
+              <Text fontSize="2xl" fontWeight="800" color="gray.800">
+                23%
               </Text>
-              <Icon as={SettingsIcon} color="warning.500" boxSize={4} />
-            </HStack>
-            <Text fontSize="2xl" fontWeight="800" color="text.primary">
-              23%
-            </Text>
-            <Text fontSize="sm" color="success.500" fontWeight="600">
-              ↗ +5.2%
-            </Text>
-          </VStack>
-        </NeumorphicCard>
+              <Text fontSize="sm" color="green.500" fontWeight="600">
+                ↗ +5.2%
+              </Text>
+            </VStack>
+          </CardBody>
+        </Card>
 
-        <NeumorphicCard variant="default" animation="fade-in">
-          <VStack align="stretch" spacing={3}>
-            <HStack justify="space-between">
-              <Text fontSize="sm" color="text.secondary" fontWeight="500">
-                Supported DEXs
+        <Card bg="white" shadow="md">
+          <CardBody>
+            <VStack align="stretch" spacing={3}>
+              <HStack justify="space-between">
+                <Text fontSize="sm" color="gray.600" fontWeight="500">
+                  Supported DEXs
+                </Text>
+                <Icon as={StarIcon} color="purple.500" boxSize={4} />
+              </HStack>
+              <Text fontSize="2xl" fontWeight="800" color="gray.800">
+                12
               </Text>
-              <Icon as={StarIcon} color="secondary.500" boxSize={4} />
-            </HStack>
-            <Text fontSize="2xl" fontWeight="800" color="text.primary">
-              12
-            </Text>
-            <Text fontSize="sm" color="text.secondary" fontWeight="600">
-              Including Uniswap, 1inch, 0x
-            </Text>
-          </VStack>
-        </NeumorphicCard>
+              <Text fontSize="sm" color="gray.600" fontWeight="600">
+                Including Uniswap, 1inch, 0x
+              </Text>
+            </VStack>
+          </CardBody>
+        </Card>
       </SimpleGrid>
 
       {/* Main Swap Interface */}
       <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={8}>
         {/* Swap Card */}
-        <NeumorphicCard variant="elevated" animation="slide-left">
-          <VStack align="stretch" spacing={6}>
-            <HStack justify="space-between">
-              <Heading size="md" color="text.primary">
-                Swap Tokens
-              </Heading>
-              <Badge
-                colorScheme="secondary"
-                fontSize="xs"
-                borderRadius="full"
-                px={3}
-                py={1}
-                className="animate-pulse"
-              >
-                Live
-              </Badge>
-            </HStack>
-            
-            <SwapCard 
-              tokens={TOKENS}
-              onQuoteReceived={handleQuoteReceived}
-              onSwapExecuted={handleSwapExecuted}
-            />
-          </VStack>
-        </NeumorphicCard>
+        <Card bg="white" shadow="lg">
+          <CardBody>
+            <VStack align="stretch" spacing={6}>
+              <HStack justify="space-between">
+                <Heading size="md" color="gray.800">
+                  Swap Tokens
+                </Heading>
+                <Badge
+                  colorScheme="purple"
+                  fontSize="xs"
+                  borderRadius="full"
+                  px={3}
+                  py={1}
+                >
+                  Live
+                </Badge>
+              </HStack>
+              
+              <SwapCard 
+                tokens={TOKENS}
+                onQuoteReceived={handleQuoteReceived}
+                onSwapExecuted={handleSwapExecuted}
+              />
+            </VStack>
+          </CardBody>
+        </Card>
 
         {/* Quote Comparison */}
         <VStack spacing={6} align="stretch">
           {quotes.length > 0 && (
-            <NeumorphicCard variant="elevated" animation="slide-right">
-              <VStack align="stretch" spacing={4}>
-                <Heading size="md" color="text.primary">
-                  DEX Comparison
-                </Heading>
-                <SwapComparisonChart quotes={quotes} />
-              </VStack>
-            </NeumorphicCard>
+            <Card bg="white" shadow="lg">
+              <CardBody>
+                <VStack align="stretch" spacing={4}>
+                  <Heading size="md" color="gray.800">
+                    DEX Comparison
+                  </Heading>
+                  <SwapComparisonChart quotes={quotes} />
+                </VStack>
+              </CardBody>
+            </Card>
           )}
 
           {selectedQuote && (
-            <NeumorphicCard variant="default" animation="fade-in">
-              <VStack align="stretch" spacing={4}>
-                <Heading size="md" color="text.primary">
-                  Selected Quote
-                </Heading>
-                <FeeBreakdown quote={selectedQuote} />
-              </VStack>
-            </NeumorphicCard>
+            <Card bg="white" shadow="md">
+              <CardBody>
+                <VStack align="stretch" spacing={4}>
+                  <Heading size="md" color="gray.800">
+                    Selected Quote
+                  </Heading>
+                  <FeeBreakdown quote={selectedQuote} />
+                </VStack>
+              </CardBody>
+            </Card>
           )}
         </VStack>
       </SimpleGrid>
 
       {/* Supported Tokens */}
-      <NeumorphicCard variant="default" animation="fade-in">
-        <VStack align="stretch" spacing={4}>
-          <Heading size="md" color="text.primary">
-            Supported Tokens
-          </Heading>
-          <SimpleGrid columns={{ base: 2, md: 3, lg: 5 }} spacing={4}>
-            {TOKENS.map((token) => (
-              <Box
-                key={token.symbol}
-                p={4}
-                borderRadius="lg"
-                bg="surface.50"
-                border="1px solid"
-                borderColor="surface.200"
-                textAlign="center"
-                className="hover:scale-105"
-                transition="all 0.2s"
-              >
-                <Text fontSize="2xl" mb={2}>
-                  {token.icon}
-                </Text>
-                <Text fontSize="sm" fontWeight="600" color="text.primary">
-                  {token.symbol}
-                </Text>
-                <Text fontSize="xs" color="text.secondary">
-                  {token.name}
-                </Text>
-              </Box>
-            ))}
-          </SimpleGrid>
-        </VStack>
-      </NeumorphicCard>
+      <Card bg="white" shadow="md">
+        <CardBody>
+          <VStack align="stretch" spacing={4}>
+            <Heading size="md" color="gray.800">
+              Supported Tokens
+            </Heading>
+            <SimpleGrid columns={{ base: 2, md: 3, lg: 5 }} spacing={4}>
+              {TOKENS.map((token) => (
+                <Box
+                  key={token.symbol}
+                  p={4}
+                  borderRadius="lg"
+                  bg="gray.50"
+                  border="1px solid"
+                  borderColor="gray.200"
+                  textAlign="center"
+                  _hover={{
+                    transform: 'scale(1.05)',
+                    boxShadow: 'md',
+                  }}
+                  transition="all 0.2s"
+                >
+                  <Text fontSize="2xl" mb={2}>
+                    {token.icon}
+                  </Text>
+                  <Text fontSize="sm" fontWeight="600" color="gray.800">
+                    {token.symbol}
+                  </Text>
+                  <Text fontSize="xs" color="gray.600">
+                    {token.name}
+                  </Text>
+                </Box>
+              ))}
+            </SimpleGrid>
+          </VStack>
+        </CardBody>
+      </Card>
 
       {/* Connection Warning */}
       {!isConnected && (
-        <NeumorphicCard variant="default" animation="fade-in">
-          <VStack spacing={4} py={6}>
-            <Icon as={ViewIcon} boxSize={12} color="text.tertiary" />
-            <Text fontSize="lg" color="text.secondary" fontWeight="600">
-              Connect Your Wallet
-            </Text>
-            <Text fontSize="sm" color="text.tertiary" textAlign="center">
-              Connect your wallet to start swapping tokens and get the best rates
-            </Text>
-          </VStack>
-        </NeumorphicCard>
+        <Card bg="white" shadow="md">
+          <CardBody>
+            <VStack spacing={4} py={6}>
+              <Icon as={ViewIcon} boxSize={12} color="gray.400" />
+              <Text fontSize="lg" color="gray.600" fontWeight="600">
+                Connect Your Wallet
+              </Text>
+              <Text fontSize="sm" color="gray.500" textAlign="center">
+                Connect your wallet to start swapping tokens and get the best rates
+              </Text>
+            </VStack>
+          </CardBody>
+        </Card>
       )}
     </VStack>
   );
