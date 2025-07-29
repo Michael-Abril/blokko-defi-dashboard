@@ -1,5 +1,4 @@
 import React from 'react';
-import { Box, Text, VStack, Button } from '@chakra-ui/react';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -22,48 +21,76 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <Box
-          p={8}
-          textAlign="center"
-          minH="100vh"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          bg="gray.50"
-        >
-          <VStack spacing={4}>
-            <Text fontSize="2xl" fontWeight="bold" color="red.500">
+        <div style={{
+          padding: '32px',
+          textAlign: 'center',
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: '#f7fafc',
+          fontFamily: 'Arial, sans-serif'
+        }}>
+          <div style={{ maxWidth: '600px' }}>
+            <h1 style={{ 
+              fontSize: '2rem', 
+              fontWeight: 'bold', 
+              color: '#e53e3e',
+              marginBottom: '16px'
+            }}>
               Something went wrong
-            </Text>
-            <Text color="gray.600">
+            </h1>
+            <p style={{ 
+              color: '#4a5568', 
+              marginBottom: '16px',
+              fontSize: '1.1rem'
+            }}>
               The application encountered an error. Please check the console for details.
-            </Text>
+            </p>
             {this.state.error && (
-              <Box
-                p={4}
-                bg="red.50"
-                borderRadius="md"
-                border="1px solid"
-                borderColor="red.200"
-                maxW="600px"
-                textAlign="left"
-              >
-                <Text fontWeight="bold" color="red.700" mb={2}>
+              <div style={{
+                padding: '16px',
+                backgroundColor: '#fed7d7',
+                borderRadius: '8px',
+                border: '1px solid #feb2b2',
+                marginBottom: '16px',
+                textAlign: 'left'
+              }}>
+                <p style={{ 
+                  fontWeight: 'bold', 
+                  color: '#c53030', 
+                  marginBottom: '8px',
+                  margin: '0 0 8px 0'
+                }}>
                   Error Details:
-                </Text>
-                <Text fontSize="sm" color="red.600" fontFamily="mono">
+                </p>
+                <p style={{ 
+                  fontSize: '14px', 
+                  color: '#c53030', 
+                  fontFamily: 'monospace',
+                  margin: 0
+                }}>
                   {this.state.error.toString()}
-                </Text>
-              </Box>
+                </p>
+              </div>
             )}
-            <Button
-              colorScheme="blue"
+            <button
+              style={{
+                backgroundColor: '#3182ce',
+                color: 'white',
+                border: 'none',
+                padding: '12px 24px',
+                borderRadius: '6px',
+                fontSize: '16px',
+                cursor: 'pointer',
+                fontWeight: 'bold'
+              }}
               onClick={() => window.location.reload()}
             >
               Reload Page
-            </Button>
-          </VStack>
-        </Box>
+            </button>
+          </div>
+        </div>
       );
     }
 
