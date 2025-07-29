@@ -1,0 +1,14 @@
+{
+  "Aave": {
+    "riskScore": 20,
+    "flagged": false
+  },
+  "Curve": {
+    "riskScore": 35,
+    "flagged": false
+  },
+  "GMX": {
+    "riskScore": 60,
+    "flagged": true
+  }
+}

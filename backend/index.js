@@ -4,7 +4,11 @@ const axios = require('axios');
 const app = express();
 const port = 3001;
 
-const { mockTransactionHistory } = require('../frontend/src/data/mockTransactionHistory.js');
+const { mockTransactionHistory } = require('./mockTransactionHistory');
+const { mockOpportunities } = require('./mockOpportunities');
+const tvlData = require('./mockData/tvl.json');
+const protocolMetrics = require('./mockData/protocolMetrics.json');
+const riskData = require('./mockData/riskData.json');
 
 app.use(cors());
 app.use(express.json());
@@ -45,6 +49,11 @@ app.get('/api/v1/market/prices', async (req, res) => {
     }
 });
 
+// Endpoint to return mock DeFi opportunities
+app.get('/api/v1/defi/opportunities', (req, res) => {
+  res.json(mockOpportunities);
+});
+
 app.post('/api/v1/taxes/capital-gains', (req, res) => {
     const { transactions } = req.body;
     let purchases = transactions.filter(t => t.type === 'buy').sort((a, b) => new Date(a.date) - new Date(b.date));
@@ -63,6 +72,15 @@ app.post('/api/v1/taxes/capital-gains', (req, res) => {
     }
     res.json({ capitalGains });
 });
+
+app.post('/api/v1/ai-agent', (req,res)=>{
+  const { prompt } = req.body;
+  res.json({ answer:`AI Stub Response to: ${prompt}`, suggestions:["Generate Report","Rebalance Portfolio"] });
+});
+
+app.get('/api/v1/metrics/tvl', (req,res)=>{ res.json(tvlData); });
+app.get('/api/v1/metrics/protocol', (req,res)=>{ res.json(protocolMetrics); });
+app.get('/api/v1/metrics/risk', (req,res)=>{ res.json(riskData); });
 
 app.listen(port, () => {
   console.log(`Blokko backend listening at http://localhost:${port}`);

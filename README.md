@@ -75,3 +75,10 @@ npm run dev
 *   The **frontend development server** will be accessible at `http://localhost:5173`.
 
 You can now open your web browser and navigate to **`http://localhost:5173`** to view and interact with the Blokko DeFi Dashboard prototype.
+
+
+# 1) move into the project folder
+cd /Users/MichaelAbril/Desktop/blokko/code/blokko-defi-dashboard
+
+# 2) start the servers
+npm run dev
