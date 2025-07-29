@@ -8,11 +8,11 @@ const AllocationBar = ({ label, percent, color, icon }) => (
     <HStack justify="space-between">
       <HStack spacing={2}>
         <Icon as={icon} color={`${color}.500`} boxSize={4} />
-        <Text fontSize="sm" fontWeight="600" color="gray.600">
+        <Text fontSize="sm" fontWeight="600" color="text.secondary">
           {label}
         </Text>
       </HStack>
-      <Text fontSize="sm" fontWeight="700" color="gray.800">
+      <Text fontSize="sm" fontWeight="700" color="text.primary">
         {percent}%
       </Text>
     </HStack>
@@ -21,7 +21,7 @@ const AllocationBar = ({ label, percent, color, icon }) => (
       size="sm" 
       colorScheme={color} 
       borderRadius="full"
-      bg="gray.200"
+      bg="surface.200"
       sx={{
         '& > div': {
           borderRadius: 'full',
@@ -57,7 +57,7 @@ const GrowthStrategyCard = ({ strategy, animation = 'fade-in' }) => {
         {/* Header */}
         <HStack justify="space-between" align="start">
           <VStack align="start" spacing={2} flex="1">
-            <Heading size="md" color="gray.800" fontWeight="700">
+            <Heading size="md" color="text.primary" fontWeight="700">
               {name}
             </Heading>
             <Text 
@@ -81,7 +81,7 @@ const GrowthStrategyCard = ({ strategy, animation = 'fade-in' }) => {
         </HStack>
 
         {/* Description */}
-        <Text fontSize="sm" color="gray.600" lineHeight="1.6">
+        <Text fontSize="sm" color="text.secondary" lineHeight="1.6">
           {description}
         </Text>
 

@@ -60,14 +60,14 @@ const Holdings = () => {
       <Box className="animate-slide-left">
         <Heading 
           size="2xl" 
-          bgGradient="linear(to-r, blue.500, blue.600)" 
+          bgGradient="linear(to-r, brand.500, brand.600)" 
           bgClip="text"
           fontWeight="800"
           mb={2}
         >
           Holdings
         </Heading>
-        <Text color="gray.600" fontSize="lg">
+        <Text color="text.secondary" fontSize="lg">
           Your multi-chain DeFi portfolio breakdown
         </Text>
       </Box>
@@ -142,17 +142,17 @@ const Holdings = () => {
                   <Box
                     p={2}
                     borderRadius="lg"
-                                bg="blue.50"
-            color="blue.500"
+                    bg="brand.50"
+                    color="brand.500"
                     className="animate-float"
                   >
                     <Icon as={SettingsIcon} boxSize={5} />
                   </Box>
                   <VStack align="start" spacing={0}>
-                    <Heading size="md" color="gray.800">
+                    <Heading size="md" color="text.primary">
                       {holding.chain}
                     </Heading>
-                    <Text fontSize="sm" color="gray.600">
+                    <Text fontSize="sm" color="text.secondary">
                       {holding.positions.length} positions
                     </Text>
                   </VStack>
@@ -160,10 +160,10 @@ const Holdings = () => {
                 
                 <HStack spacing={3}>
                   <VStack align="end" spacing={0}>
-                    <Text fontSize="lg" fontWeight="700" color="gray.800">
+                    <Text fontSize="lg" fontWeight="700" color="text.primary">
                       ${holding.positions.reduce((sum, p) => sum + p.balance, 0).toLocaleString()}
                     </Text>
-                    <Text fontSize="sm" color="gray.600">
+                    <Text fontSize="sm" color="text.secondary">
                       Total Value
                     </Text>
                   </VStack>
@@ -191,11 +191,11 @@ const Holdings = () => {
       {filtered.length === 0 && (
         <NeumorphicCard variant="default" animation="fade-in">
           <VStack spacing={4} py={8}>
-            <Icon as={ViewIcon} boxSize={12} color="gray.400" />
-            <Text fontSize="lg" color="gray.600" fontWeight="600">
+            <Icon as={ViewIcon} boxSize={12} color="text.tertiary" />
+            <Text fontSize="lg" color="text.secondary" fontWeight="600">
               No holdings found
             </Text>
-            <Text fontSize="sm" color="gray.400" textAlign="center">
+            <Text fontSize="sm" color="text.tertiary" textAlign="center">
               Try adjusting your filters or search terms
             </Text>
           </VStack>
