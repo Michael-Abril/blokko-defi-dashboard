@@ -18,7 +18,14 @@ import {
   Badge,
   Tooltip,
   useColorMode,
-  Button
+  Button,
+  Avatar,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuDivider,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { NavLink as RouterLink } from 'react-router-dom';
@@ -28,7 +35,9 @@ import {
   SunIcon, 
   MoonIcon,
   ChevronDownIcon,
-  SettingsIcon
+  SettingsIcon,
+  BellIcon,
+  SearchIcon,
 } from '@chakra-ui/icons';
 
 const NavLink = ({ to, children, isMobile = false }) => (
@@ -42,16 +51,16 @@ const NavLink = ({ to, children, isMobile = false }) => (
     color="gray.600"
     _hover={{ 
       textDecoration: 'none', 
-      color: 'blue.500',
-      bg: 'gray.50',
+      color: 'secondary.500',
+      bg: 'glass.100',
       transform: 'translateY(-1px)',
-      boxShadow: 'md'
+      boxShadow: 'neon',
     }}
     _activeLink={{ 
-      color: 'blue.500', 
+      color: 'secondary.500', 
       fontWeight: '600',
-      bg: 'blue.50',
-      boxShadow: 'md'
+      bg: 'glass.200',
+      boxShadow: 'neon',
     }}
     transition="all 0.2s"
   >
@@ -63,6 +72,7 @@ const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
   const [isScrolled, setIsScrolled] = useState(false);
+  const isMobile = useBreakpointValue({ base: true, md: false });
 
   // Handle scroll effect
   React.useEffect(() => {
@@ -89,181 +99,206 @@ const Header = () => {
         align="center" 
         px={{ base: 4, md: 6, lg: 8 }}
         py={4}
-        bg={isScrolled ? 'rgba(255, 255, 255, 0.95)' : 'white'}
-        backdropFilter={isScrolled ? 'blur(10px)' : 'none'}
-        boxShadow={isScrolled ? 'lg' : 'md'}
+        bg={isScrolled ? 'glass.200' : 'glass.100'}
+        backdropFilter="blur(20px)"
+        boxShadow={isScrolled ? 'glass' : 'none'}
+        borderBottom={isScrolled ? '1px solid' : 'none'}
+        borderColor="glass.300"
         position="fixed"
         top="0"
         left="0"
         right="0"
         zIndex="sticky"
         transition="all 0.3s ease"
-        className="animate-fade-in"
       >
         {/* Logo */}
-        <Flex align="center" className="animate-slide-left">
+        <HStack spacing={3}>
           <Box
             w="40px"
             h="40px"
-            bg="blue.500"
+            bg="gradient.brand"
             borderRadius="xl"
             display="flex"
             alignItems="center"
             justifyContent="center"
-            mr={3}
-            className="animate-glow"
+            boxShadow="neon"
           >
-            <Text fontSize="lg" fontWeight="800" color="white">B</Text>
+            <Text fontSize="lg" fontWeight="bold" color="white">
+              B
+            </Text>
           </Box>
-          <VStack align="start" spacing={0}>
-            <Text fontSize="xl" fontWeight="800" color="gray.800">
+          <VStack spacing={0} align="start">
+            <Text fontSize="lg" fontWeight="bold" color="text.primary">
               Blokko
             </Text>
-            <Text fontSize="xs" color="gray.500" fontWeight="500">
-              DeFi Dashboard
+            <Text fontSize="xs" color="text.secondary" fontWeight="500">
+              DeFi Treasury
             </Text>
           </VStack>
-        </Flex>
-
-        <Spacer />
-
-        {/* Desktop Navigation */}
-        <HStack spacing={2} display={{ base: 'none', lg: 'flex' }}>
-          {navItems.map((item) => (
-            <Box key={item.to} position="relative">
-              <NavLink to={item.to}>
-                {item.label}
-              </NavLink>
-              {item.badge && (
-                <Badge
-                  position="absolute"
-                  top="-8px"
-                  right="-8px"
-                  colorScheme={item.badge === 'Live' ? 'success' : item.badge === 'Best Rate' ? 'brand' : 'warning'}
-                  fontSize="xs"
-                  borderRadius="full"
-                  px={2}
-                  py={0.5}
-                  className="animate-pulse"
-                >
-                  {item.badge}
-                </Badge>
-              )}
-            </Box>
-          ))}
         </HStack>
 
         <Spacer />
 
-        {/* Right side controls */}
-        <HStack spacing={3} className="animate-slide-right">
-          {/* Theme toggle */}
+        {/* Desktop Navigation */}
+        {!isMobile && (
+          <HStack spacing={1} mr={6}>
+            {navItems.map((item) => (
+              <Box key={item.to} position="relative">
+                <NavLink to={item.to}>
+                  {item.label}
+                </NavLink>
+                {item.badge && (
+                  <Badge
+                    position="absolute"
+                    top="-2"
+                    right="-2"
+                    colorScheme="secondary"
+                    variant="neon"
+                    fontSize="2xs"
+                    px={1}
+                    py={0.5}
+                  >
+                    {item.badge}
+                  </Badge>
+                )}
+              </Box>
+            ))}
+          </HStack>
+        )}
+
+        {/* Right Side Actions */}
+        <HStack spacing={3}>
+          {/* Search Button */}
+          <Tooltip label="Search">
+            <IconButton
+              icon={<SearchIcon />}
+              variant="glass"
+              size="sm"
+              aria-label="Search"
+            />
+          </Tooltip>
+
+          {/* Notifications */}
+          <Tooltip label="Notifications">
+            <IconButton
+              icon={<BellIcon />}
+              variant="glass"
+              size="sm"
+              aria-label="Notifications"
+              position="relative"
+            >
+              <Badge
+                position="absolute"
+                top="-1"
+                right="-1"
+                colorScheme="error"
+                variant="solid"
+                fontSize="2xs"
+                borderRadius="full"
+                w="4"
+                h="4"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+              >
+                3
+              </Badge>
+            </IconButton>
+          </Tooltip>
+
+          {/* Theme Toggle */}
           <Tooltip label={`Switch to ${colorMode === 'light' ? 'dark' : 'light'} mode`}>
             <IconButton
-              aria-label="Toggle color mode"
               icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-              variant="neumorphic"
-              size="sm"
               onClick={toggleColorMode}
-              className="hover:scale-105"
+              variant="glass"
+              size="sm"
+              aria-label="Toggle theme"
             />
           </Tooltip>
 
           {/* Settings */}
           <Tooltip label="Settings">
             <IconButton
-              aria-label="Settings"
               icon={<SettingsIcon />}
-              variant="neumorphic"
+              variant="glass"
               size="sm"
-              className="hover:scale-105"
+              aria-label="Settings"
             />
           </Tooltip>
 
           {/* Connect Wallet */}
-          <Box className="hover:scale-105">
+          <Box
+            sx={{
+              '.rainbow-kit-connect': {
+                bg: 'glass.200',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid',
+                borderColor: 'glass.300',
+                borderRadius: 'lg',
+                _hover: {
+                  bg: 'glass.300',
+                  borderColor: 'secondary.500',
+                  boxShadow: 'neon',
+                },
+              },
+            }}
+          >
             <ConnectButton />
           </Box>
 
-          {/* Mobile menu button */}
-          <IconButton
-            aria-label="Open menu"
-            icon={<HamburgerIcon />}
-            variant="neumorphic"
-            size="sm"
-            display={{ base: 'flex', lg: 'none' }}
-            onClick={onOpen}
-            className="hover:scale-105"
-          />
+          {/* Mobile Menu Button */}
+          {isMobile && (
+            <IconButton
+              icon={<HamburgerIcon />}
+              variant="glass"
+              size="sm"
+              onClick={onOpen}
+              aria-label="Open menu"
+            />
+          )}
         </HStack>
       </Flex>
 
       {/* Mobile Navigation Drawer */}
-      <Drawer isOpen={isOpen} placement="right" onClose={onClose} size="full">
-        <DrawerOverlay />
-        <DrawerContent bg="surface.50">
-          <DrawerCloseButton />
-          <DrawerHeader borderBottomWidth="1px" borderColor="surface.200">
-            <Flex align="center">
-              <Box
-                w="32px"
-                h="32px"
-                bg="gradient.brand"
-                borderRadius="lg"
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                mr={3}
-              >
-                <Text fontSize="md" fontWeight="800" color="white">B</Text>
-              </Box>
-              <Text fontSize="lg" fontWeight="700" color="text.primary">
-                Blokko
+      <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
+        <DrawerOverlay bg="background.overlay" backdropFilter="blur(10px)" />
+        <DrawerContent bg="glass.100" backdropFilter="blur(20px)" borderLeft="1px solid" borderColor="glass.300">
+          <DrawerHeader borderBottom="1px solid" borderColor="glass.300">
+            <HStack justify="space-between">
+              <Text fontSize="lg" fontWeight="bold" color="text.primary">
+                Menu
               </Text>
-            </Flex>
+              <IconButton
+                icon={<CloseIcon />}
+                variant="ghost"
+                size="sm"
+                onClick={onClose}
+                aria-label="Close menu"
+              />
+            </HStack>
           </DrawerHeader>
           <DrawerBody pt={6}>
             <VStack spacing={2} align="stretch">
               {navItems.map((item) => (
                 <Box key={item.to} position="relative">
-                  <NavLink to={item.to} isMobile={true}>
+                  <NavLink to={item.to} isMobile>
                     {item.label}
                   </NavLink>
                   {item.badge && (
                     <Badge
                       position="absolute"
-                      top="50%"
-                      right="16px"
-                      transform="translateY(-50%)"
-                      colorScheme={item.badge === 'Live' ? 'success' : item.badge === 'Best Rate' ? 'brand' : 'warning'}
-                      fontSize="xs"
-                      borderRadius="full"
-                      px={2}
-                      py={0.5}
+                      top="2"
+                      right="2"
+                      colorScheme="secondary"
+                      variant="neon"
+                      fontSize="2xs"
                     >
                       {item.badge}
                     </Badge>
                   )}
                 </Box>
               ))}
-              
-              {/* Additional mobile-only items */}
-              <Box pt={4} borderTopWidth="1px" borderColor="surface.200">
-                <VStack spacing={2} align="stretch">
-                  <NavLink to="/transactions" isMobile={true}>
-                    Transactions
-                  </NavLink>
-                  <NavLink to="/allocation" isMobile={true}>
-                    Allocation
-                  </NavLink>
-                  <NavLink to="/discovery" isMobile={true}>
-                    Discovery
-                  </NavLink>
-                  <NavLink to="/academy" isMobile={true}>
-                    Academy
-                  </NavLink>
-                </VStack>
-              </Box>
             </VStack>
           </DrawerBody>
         </DrawerContent>

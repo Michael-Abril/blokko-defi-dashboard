@@ -6,30 +6,40 @@ import {
   VStack,
   HStack,
   Text,
+  Card,
+  CardBody,
+  Stat,
+  StatLabel,
+  StatNumber,
+  StatHelpText,
+  StatArrow,
+  Progress,
+  Badge,
+  Button,
+  Link,
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  Avatar,
+  Divider,
 } from '@chakra-ui/react';
-import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid } from 'recharts';
 import { mockPortfolio } from '../data/mockPortfolio';
 import { mockGrowthStrategies } from '../data/mockGrowthStrategies';
 import { mockTransactionHistory } from '../data/mockTransactionHistory';
-import GrowthStrategyCard from '../components/Dashboard/GrowthStrategyCard';
-import TransactionRow from '../components/Dashboard/TransactionRow';
-import { Link as RouterLink } from 'react-router-dom';
-import { Link, Table, Thead, Tbody, Tr, Th } from '@chakra-ui/react';
 import { mockTreasury } from '../data/mockTreasury';
-import LiveYieldChart from '../components/Dashboard/LiveYieldChart';
-import RiskScoreWidget from '../components/Dashboard/RiskScoreWidget';
-import AutoAllocationSummary from '../components/Dashboard/AutoAllocationSummary';
 import { mockUpcomingTx } from '../data/mockUpcomingTx';
-import UpcomingTxCard from '../components/Dashboard/UpcomingTxCard';
-import StatCard from '../components/UI/StatCard';
-import NeumorphicCard from '../components/UI/NeumorphicCard';
+import { Link as RouterLink } from 'react-router-dom';
 import { 
-  TriangleDownIcon, 
   ChevronUpIcon, 
   CheckCircleIcon, 
   ViewIcon,
   SettingsIcon,
-  StarIcon 
+  StarIcon,
+  TimeIcon,
 } from '@chakra-ui/icons';
 
 const COLORS = ['#0072E6', '#22C55E', '#F59E0B', '#EF4444', '#8B5CF6', '#06B6D4'];
@@ -62,213 +72,305 @@ const Dashboard = () => {
     { name: 'DeFi', value: totalDefi },
   ];
 
+  // Mock yield data for chart
+  const yieldData = [
+    { date: 'Jan', yield: 5.2 },
+    { date: 'Feb', yield: 5.8 },
+    { date: 'Mar', yield: 6.1 },
+    { date: 'Apr', yield: 7.2 },
+    { date: 'May', yield: 8.1 },
+    { date: 'Jun', yield: 8.2 },
+  ];
+
   const [strategy, setStrategy] = useState({ id: 'custom', name: 'Custom', allocations: { stablecoins: 80, treasuries: 15, defi: 5 } });
 
   return (
     <VStack spacing={8} align="stretch">
       {/* Page Header */}
-      <Box className="animate-slide-left">
+      <Box>
         <Heading 
           size="2xl" 
-          bgGradient="linear(to-r, blue.500, blue.600)" 
+          bgGradient="linear(to-r, brand.500, secondary.500)" 
           bgClip="text"
           fontWeight="800"
           mb={2}
         >
           Dashboard
         </Heading>
-        <Text color="gray.600" fontSize="lg">
+        <Text color="text.secondary" fontSize="lg">
           Your comprehensive DeFi portfolio overview
         </Text>
       </Box>
 
       {/* Stats Grid */}
       <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 6 }} spacing={6}>
-        <StatCard
-          title="Total Stablecoins"
-          value={`$${totalStablecoins.toLocaleString()}`}
-          change="+2.4%"
-          changeType="positive"
-          icon={TriangleDownIcon}
-          badge="Live"
-          badgeColor="success"
-          animation="fade-in"
-        />
-        <StatCard
-          title="Blokko Treasury"
-          value={`$${totalBlokkoTreasury.toLocaleString()}`}
-          change="+1.8%"
-          changeType="positive"
-          icon={CheckCircleIcon}
-          badge="Secure"
-          badgeColor="brand"
-          animation="fade-in"
-        />
-        <StatCard
-          title="External Treasuries"
-          value={`$${totalExternalTreasury.toLocaleString()}`}
-          change="+3.2%"
-          changeType="positive"
-          icon={SettingsIcon}
-          badge="Multi-chain"
-          badgeColor="purple"
-          animation="fade-in"
-        />
-        <StatCard
-          title="DeFi Positions"
-          value={`$${totalDefi.toLocaleString()}`}
-          change="+5.7%"
-          changeType="positive"
-          icon={ChevronUpIcon}
-          badge="High Yield"
-          badgeColor="warning"
-          animation="fade-in"
-        />
-        <StatCard
-          title="Portfolio Value"
-          value={`$${portfolioValue.toLocaleString()}`}
-          change="+4.1%"
-          changeType="positive"
-          icon={ViewIcon}
-          badge="Total"
-          badgeColor="blue"
-          animation="fade-in"
-        />
-        <StatCard
-          title="Average APY"
-          value={`${apy}%`}
-          change="+0.3%"
-          changeType="positive"
-          icon={StarIcon}
-          badge="Live"
-          badgeColor="success"
-          animation="fade-in"
-        />
+        <Card variant="glass">
+          <CardBody>
+            <Stat>
+              <StatLabel color="text.secondary" fontSize="sm">Total Stablecoins</StatLabel>
+              <StatNumber fontSize="2xl" fontWeight="bold" color="text.primary">
+                ${totalStablecoins.toLocaleString()}
+              </StatNumber>
+              <StatHelpText>
+                <StatArrow type="increase" />
+                2.4% from last month
+              </StatHelpText>
+            </Stat>
+          </CardBody>
+        </Card>
+
+        <Card variant="glass">
+          <CardBody>
+            <Stat>
+              <StatLabel color="text.secondary" fontSize="sm">Blokko Treasury</StatLabel>
+              <StatNumber fontSize="2xl" fontWeight="bold" color="text.primary">
+                ${totalBlokkoTreasury.toLocaleString()}
+              </StatNumber>
+              <StatHelpText>
+                <StatArrow type="increase" />
+                1.8% from last month
+              </StatHelpText>
+            </Stat>
+          </CardBody>
+        </Card>
+
+        <Card variant="glass">
+          <CardBody>
+            <Stat>
+              <StatLabel color="text.secondary" fontSize="sm">External Treasuries</StatLabel>
+              <StatNumber fontSize="2xl" fontWeight="bold" color="text.primary">
+                ${totalExternalTreasury.toLocaleString()}
+              </StatNumber>
+              <StatHelpText>
+                <StatArrow type="increase" />
+                3.2% from last month
+              </StatHelpText>
+            </Stat>
+          </CardBody>
+        </Card>
+
+        <Card variant="glass">
+          <CardBody>
+            <Stat>
+              <StatLabel color="text.secondary" fontSize="sm">DeFi Positions</StatLabel>
+              <StatNumber fontSize="2xl" fontWeight="bold" color="text.primary">
+                ${totalDefi.toLocaleString()}
+              </StatNumber>
+              <StatHelpText>
+                <StatArrow type="increase" />
+                5.7% from last month
+              </StatHelpText>
+            </Stat>
+          </CardBody>
+        </Card>
+
+        <Card variant="glass">
+          <CardBody>
+            <Stat>
+              <StatLabel color="text.secondary" fontSize="sm">Portfolio Value</StatLabel>
+              <StatNumber fontSize="2xl" fontWeight="bold" color="text.primary">
+                ${portfolioValue.toLocaleString()}
+              </StatNumber>
+              <StatHelpText>
+                <StatArrow type="increase" />
+                4.1% from last month
+              </StatHelpText>
+            </Stat>
+          </CardBody>
+        </Card>
+
+        <Card variant="glass">
+          <CardBody>
+            <Stat>
+              <StatLabel color="text.secondary" fontSize="sm">Average APY</StatLabel>
+              <StatNumber fontSize="2xl" fontWeight="bold" color="success.500">
+                {apy}%
+              </StatNumber>
+              <StatHelpText>
+                <StatArrow type="increase" />
+                +0.3% from last week
+              </StatHelpText>
+            </Stat>
+          </CardBody>
+        </Card>
       </SimpleGrid>
 
       {/* Charts Section */}
       <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={8}>
-        <NeumorphicCard variant="elevated" animation="slide-left">
-          <VStack align="stretch" spacing={4}>
-            <Heading size="md" color="gray.800">Allocation by Chain</Heading>
-            <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
-                <Pie 
-                  data={allocationByChain} 
-                  dataKey="value" 
-                  nameKey="name" 
-                  cx="50%" 
-                  cy="50%" 
-                  outerRadius={100} 
-                  fill="#8884d8" 
-                  label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                >
-                  {allocationByChain.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                  ))}
-                </Pie>
-                <Tooltip 
-                  formatter={(value) => [`$${value.toLocaleString()}`, 'Value']}
-                  labelStyle={{ color: 'text.primary' }}
-                />
-              </PieChart>
-            </ResponsiveContainer>
-          </VStack>
-        </NeumorphicCard>
+        <Card variant="neon">
+          <CardBody>
+            <VStack align="stretch" spacing={4}>
+              <Heading size="md" color="text.primary">Allocation by Chain</Heading>
+              <ResponsiveContainer width="100%" height={300}>
+                <PieChart>
+                  <Pie 
+                    data={allocationByChain} 
+                    dataKey="value" 
+                    nameKey="name" 
+                    cx="50%" 
+                    cy="50%" 
+                    outerRadius={100} 
+                    fill="#8884d8" 
+                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                  >
+                    {allocationByChain.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
+                  <Tooltip 
+                    formatter={(value) => [`$${value.toLocaleString()}`, 'Value']}
+                    labelStyle={{ color: 'text.primary' }}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+            </VStack>
+          </CardBody>
+        </Card>
 
-        <NeumorphicCard variant="elevated" animation="slide-right">
-          <VStack align="stretch" spacing={4}>
-            <Heading size="md" color="text.primary">Allocation by Investment Type</Heading>
-            <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
-                <Pie 
-                  data={investmentTypeData} 
-                  dataKey="value" 
-                  nameKey="name" 
-                  cx="50%" 
-                  cy="50%" 
-                  outerRadius={100} 
-                  fill="#8884d8" 
-                  label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                >
-                  {investmentTypeData.map((entry, index) => (
-                    <Cell key={`cell2-${index}`} fill={COLORS[index % COLORS.length]} />
-                  ))}
-                </Pie>
-                <Tooltip 
-                  formatter={(value) => [`$${value.toLocaleString()}`, 'Value']}
-                  labelStyle={{ color: 'text.primary' }}
-                />
-              </PieChart>
-            </ResponsiveContainer>
-          </VStack>
-        </NeumorphicCard>
+        <Card variant="neon">
+          <CardBody>
+            <VStack align="stretch" spacing={4}>
+              <Heading size="md" color="text.primary">Yield Performance</Heading>
+              <ResponsiveContainer width="100%" height={300}>
+                <LineChart data={yieldData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="date" />
+                  <YAxis />
+                  <Tooltip />
+                  <Line type="monotone" dataKey="yield" stroke="#00D4C8" strokeWidth={2} />
+                </LineChart>
+              </ResponsiveContainer>
+            </VStack>
+          </CardBody>
+        </Card>
       </SimpleGrid>
 
-      {/* Live Yield and Risk Score */}
-      <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={8}>
-        <LiveYieldChart />
-        <RiskScoreWidget />
-      </SimpleGrid>
-      
       {/* Growth Strategies */}
       <VStack align="stretch" spacing={6}>
-        <Heading size="lg" color="text.primary" className="animate-slide-left">
+        <Heading size="lg" color="text.primary">
           Growth Strategies
         </Heading>
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={6}>
           {mockGrowthStrategies.map((gs, index) => (
-            <GrowthStrategyCard 
-              key={gs.id} 
-              strategy={gs} 
-              animation={`slide-${index % 2 === 0 ? 'left' : 'right'}`}
-            />
+            <Card key={gs.id} variant="glass">
+              <CardBody>
+                <VStack align="stretch" spacing={4}>
+                  <HStack justify="space-between">
+                    <Text fontWeight="bold" color="text.primary">
+                      {gs.name}
+                    </Text>
+                    <Badge colorScheme="secondary" variant="neon">
+                      {gs.risk}
+                    </Badge>
+                  </HStack>
+                  <Text fontSize="sm" color="text.secondary">
+                    {gs.description}
+                  </Text>
+                  <VStack align="stretch" spacing={2}>
+                    <HStack justify="space-between">
+                      <Text fontSize="sm" color="text.secondary">Expected APY</Text>
+                      <Text fontSize="sm" fontWeight="bold" color="success.500">
+                        {gs.expectedApy}%
+                      </Text>
+                    </HStack>
+                    <HStack justify="space-between">
+                      <Text fontSize="sm" color="text.secondary">Min Investment</Text>
+                      <Text fontSize="sm" fontWeight="bold" color="text.primary">
+                        ${gs.minInvestment.toLocaleString()}
+                      </Text>
+                    </HStack>
+                  </VStack>
+                  <Button size="sm" variant="solid" colorScheme="secondary">
+                    Apply Strategy
+                  </Button>
+                </VStack>
+              </CardBody>
+            </Card>
           ))}
         </SimpleGrid>
       </VStack>
 
-      {/* Auto Allocation Summary */}
-      <AutoAllocationSummary strategy={strategy} onStrategyChange={setStrategy} />
-
       {/* Recent Transactions */}
-      <NeumorphicCard variant="default" animation="fade-in">
-        <VStack align="stretch" spacing={4}>
-          <HStack justify="space-between">
-            <Heading size="md" color="text.primary">Recent Transactions</Heading>
-            <Link as={RouterLink} to="/transactions" color="brand.500" fontWeight="600">
-              View all →
-            </Link>
-          </HStack>
-          <Box overflowX="auto">
-            <Table variant="simple">
-              <Thead>
-                <Tr>
-                  <Th>Date</Th>
-                  <Th>Type</Th>
-                  <Th>Source / Destination</Th>
-                  <Th isNumeric>Amount</Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-                {recentTxs.map(tx => <TransactionRow key={tx.id} tx={tx} />)}
-              </Tbody>
-            </Table>
-          </Box>
-        </VStack>
-      </NeumorphicCard>
+      <Card variant="glass">
+        <CardBody>
+          <VStack align="stretch" spacing={4}>
+            <HStack justify="space-between">
+              <Heading size="md" color="text.primary">Recent Transactions</Heading>
+              <Link as={RouterLink} to="/transactions" color="secondary.500" fontWeight="600">
+                View all →
+              </Link>
+            </HStack>
+            <Box overflowX="auto">
+              <Table variant="simple">
+                <Thead>
+                  <Tr>
+                    <Th>Date</Th>
+                    <Th>Type</Th>
+                    <Th>Source / Destination</Th>
+                    <Th isNumeric>Amount</Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  {recentTxs.map(tx => (
+                    <Tr key={tx.id}>
+                      <Td>{new Date(tx.timestamp).toLocaleDateString()}</Td>
+                      <Td>
+                        <Badge colorScheme={tx.type === 'Swap' ? 'blue' : tx.type === 'Bridge' ? 'purple' : 'green'}>
+                          {tx.type}
+                        </Badge>
+                      </Td>
+                      <Td>{tx.source} → {tx.destination}</Td>
+                      <Td isNumeric>${tx.amount.toLocaleString()}</Td>
+                    </Tr>
+                  ))}
+                </Tbody>
+              </Table>
+            </Box>
+          </VStack>
+        </CardBody>
+      </Card>
 
       {/* Upcoming Transactions */}
       <VStack align="stretch" spacing={6}>
-        <Heading size="lg" color="text.primary" className="animate-slide-left">
+        <Heading size="lg" color="text.primary">
           Upcoming Transactions
         </Heading>
         <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
           {mockUpcomingTx.map((tx, index) => (
-            <UpcomingTxCard 
-              key={tx.id} 
-              tx={tx} 
-              animation={`slide-${index % 2 === 0 ? 'left' : 'right'}`}
-            />
+            <Card key={tx.id} variant="neon">
+              <CardBody>
+                <VStack align="stretch" spacing={3}>
+                  <HStack justify="space-between">
+                    <Text fontWeight="bold" color="text.primary">
+                      {tx.type}
+                    </Text>
+                    <Badge colorScheme="warning" variant="subtle">
+                      Pending
+                    </Badge>
+                  </HStack>
+                  <Text fontSize="sm" color="text.secondary">
+                    {tx.description}
+                  </Text>
+                  <VStack align="stretch" spacing={1}>
+                    <HStack justify="space-between">
+                      <Text fontSize="sm" color="text.secondary">Amount</Text>
+                      <Text fontSize="sm" fontWeight="bold" color="text.primary">
+                        ${tx.amount.toLocaleString()}
+                      </Text>
+                    </HStack>
+                    <HStack justify="space-between">
+                      <Text fontSize="sm" color="text.secondary">Scheduled</Text>
+                      <Text fontSize="sm" fontWeight="bold" color="text.primary">
+                        {new Date(tx.scheduledFor).toLocaleDateString()}
+                      </Text>
+                    </HStack>
+                  </VStack>
+                  <Button size="sm" variant="outline" colorScheme="secondary">
+                    View Details
+                  </Button>
+                </VStack>
+              </CardBody>
+            </Card>
           ))}
         </SimpleGrid>
       </VStack>

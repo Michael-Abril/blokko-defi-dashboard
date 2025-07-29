@@ -9,19 +9,41 @@ import {
   Badge,
   Icon,
   Tooltip,
-  useColorModeValue
+  useColorModeValue,
+  Card,
+  CardBody,
+  CardHeader,
+  Select,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Flex,
+  Progress,
+  Stat,
+  StatLabel,
+  StatNumber,
+  StatHelpText,
+  StatArrow,
+  useBreakpointValue,
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+  Avatar,
+  Divider,
 } from '@chakra-ui/react';
 import { mockPortfolio } from '../data/mockPortfolio';
 import HoldingsFilter from '../components/Holdings/HoldingsFilter';
 import ProtocolDetailsAccordion from '../components/Holdings/ProtocolDetailsAccordion';
-import NeumorphicCard from '../components/UI/NeumorphicCard';
-import StatCard from '../components/UI/StatCard';
 import { 
   ChevronUpIcon, 
   CheckCircleIcon, 
   StarIcon,
   SettingsIcon,
-  ViewIcon
+  ViewIcon,
+  SearchIcon,
+  TimeIcon,
 } from '@chakra-ui/icons';
 
 const Holdings = () => {
@@ -29,6 +51,7 @@ const Holdings = () => {
   const chains = holdings.map(h => h.chain);
   const [chain, setChain] = useState('All');
   const [search, setSearch] = useState('');
+  const [activeTab, setActiveTab] = useState('overview');
 
   const filtered = useMemo(() => {
     let list = [...holdings];
@@ -53,14 +76,37 @@ const Holdings = () => {
   ) / holdings.reduce((sum, h) => sum + h.positions.length, 0);
 
   const totalPositions = holdings.reduce((sum, h) => sum + h.positions.length, 0);
+  const activeChains = new Set(holdings.map(h => h.chain)).size;
+
+  const getRiskColor = (risk) => {
+    switch (risk?.toLowerCase()) {
+      case 'low': return 'success';
+      case 'medium': return 'warning';
+      case 'high': return 'error';
+      default: return 'gray';
+    }
+  };
+
+  const getChainIcon = (chain) => {
+    const icons = {
+      'Ethereum': '🔷',
+      'Arbitrum': '🔵',
+      'Polygon': '🟣',
+      'Optimism': '🔴',
+      'Base': '🔵',
+    };
+    return icons[chain] || '🪙';
+  };
+
+  const isMobile = useBreakpointValue({ base: true, md: false });
 
   return (
     <VStack spacing={8} align="stretch">
       {/* Page Header */}
-      <Box className="animate-slide-left">
+      <Box>
         <Heading 
           size="2xl" 
-          bgGradient="linear(to-r, brand.500, brand.600)" 
+          bgGradient="linear(to-r, brand.500, secondary.500)" 
           bgClip="text"
           fontWeight="800"
           mb={2}
@@ -74,133 +120,282 @@ const Holdings = () => {
 
       {/* Portfolio Overview Stats */}
       <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6}>
-        <StatCard
-          title="Total Portfolio Value"
-          value={`$${totalValue.toLocaleString()}`}
-          change="+3.2%"
-          changeType="positive"
-          icon={ViewIcon}
-          badge="Live"
-          badgeColor="success"
-          animation="fade-in"
-        />
-        <StatCard
-          title="Average APY"
-          value={`${averageAPY.toFixed(2)}%`}
-          change="+0.5%"
-          changeType="positive"
-          icon={ChevronUpIcon}
-          badge="Optimized"
-          badgeColor="warning"
-          animation="fade-in"
-        />
-        <StatCard
-          title="Active Positions"
-          value={totalPositions.toString()}
-          change="+2"
-          changeType="positive"
-          icon={StarIcon}
-          badge="Active"
-          badgeColor="brand"
-          animation="fade-in"
-        />
-        <StatCard
-          title="Networks"
-          value={chains.length.toString()}
-          change=""
-          changeType="neutral"
-          icon={SettingsIcon}
-          badge="Multi-chain"
-          badgeColor="purple"
-          animation="fade-in"
-        />
+        <Card variant="glass">
+          <CardBody>
+            <Stat>
+              <StatLabel color="text.secondary" fontSize="sm">Total Portfolio Value</StatLabel>
+              <StatNumber fontSize="2xl" fontWeight="bold" color="text.primary">
+                ${totalValue.toLocaleString()}
+              </StatNumber>
+              <StatHelpText>
+                <StatArrow type="increase" />
+                3.2% from last month
+              </StatHelpText>
+            </Stat>
+          </CardBody>
+        </Card>
+
+        <Card variant="glass">
+          <CardBody>
+            <Stat>
+              <StatLabel color="text.secondary" fontSize="sm">Average APY</StatLabel>
+              <StatNumber fontSize="2xl" fontWeight="bold" color="success.500">
+                {averageAPY.toFixed(2)}%
+              </StatNumber>
+              <StatHelpText>
+                <StatArrow type="increase" />
+                +0.5% from last week
+              </StatHelpText>
+            </Stat>
+          </CardBody>
+        </Card>
+
+        <Card variant="glass">
+          <CardBody>
+            <Stat>
+              <StatLabel color="text.secondary" fontSize="sm">Active Positions</StatLabel>
+              <StatNumber fontSize="2xl" fontWeight="bold" color="text.primary">
+                {totalPositions}
+              </StatNumber>
+              <StatHelpText>
+                Across {activeChains} chains
+              </StatHelpText>
+            </Stat>
+          </CardBody>
+        </Card>
+
+        <Card variant="glass">
+          <CardBody>
+            <Stat>
+              <StatLabel color="text.secondary" fontSize="sm">Risk Score</StatLabel>
+              <StatNumber fontSize="2xl" fontWeight="bold" color="warning.500">
+                24
+              </StatNumber>
+              <StatHelpText>
+                Low risk portfolio
+              </StatHelpText>
+            </Stat>
+          </CardBody>
+        </Card>
       </SimpleGrid>
 
-      {/* Filters */}
-      <NeumorphicCard variant="default" animation="slide-left">
-        <HoldingsFilter 
-          chain={chain} 
-          setChain={setChain} 
-          search={search} 
-          setSearch={setSearch} 
-          chains={chains} 
-        />
-      </NeumorphicCard>
+      {/* Filters and Search */}
+      <Card variant="glass">
+        <CardBody>
+          <HStack spacing={4} wrap="wrap">
+            <Select
+              value={chain}
+              onChange={(e) => setChain(e.target.value)}
+              maxW="200px"
+              size="sm"
+            >
+              <option value="All">All Chains</option>
+              {chains.map((c) => (
+                <option key={c} value={c}>{c}</option>
+              ))}
+            </Select>
+            
+            <InputGroup maxW="300px" size="sm">
+              <InputLeftElement pointerEvents="none">
+                <SearchIcon color="text.secondary" />
+              </InputLeftElement>
+              <Input
+                placeholder="Search protocols..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </InputGroup>
+          </HStack>
+        </CardBody>
+      </Card>
 
-      {/* Holdings by Chain */}
-      <VStack spacing={6} align="stretch">
-        {filtered.map((holding, index) => (
-          <NeumorphicCard 
-            key={holding.chain} 
-            variant="elevated" 
-            animation={`slide-${index % 2 === 0 ? 'left' : 'right'}`}
-          >
-            <VStack align="stretch" spacing={4}>
-              {/* Chain Header */}
-              <HStack justify="space-between" align="center">
-                <HStack spacing={3}>
-                  <Box
-                    p={2}
-                    borderRadius="lg"
-                    bg="brand.50"
-                    color="brand.500"
-                    className="animate-float"
-                  >
-                    <Icon as={SettingsIcon} boxSize={5} />
-                  </Box>
-                  <VStack align="start" spacing={0}>
-                    <Heading size="md" color="text.primary">
-                      {holding.chain}
-                    </Heading>
-                    <Text fontSize="sm" color="text.secondary">
-                      {holding.positions.length} positions
-                    </Text>
-                  </VStack>
-                </HStack>
-                
-                <HStack spacing={3}>
-                  <VStack align="end" spacing={0}>
-                    <Text fontSize="lg" fontWeight="700" color="text.primary">
-                      ${holding.positions.reduce((sum, p) => sum + p.balance, 0).toLocaleString()}
-                    </Text>
-                    <Text fontSize="sm" color="text.secondary">
-                      Total Value
-                    </Text>
-                  </VStack>
-                  <Badge
-                    colorScheme="success"
-                    fontSize="xs"
-                    borderRadius="full"
-                    px={3}
-                    py={1}
-                    className="animate-pulse"
-                  >
-                    Live
-                  </Badge>
-                </HStack>
-              </HStack>
+      {/* Tabs for different views */}
+      <Tabs value={activeTab} onChange={setActiveTab} variant="enclosed">
+        <TabList>
+          <Tab>Overview</Tab>
+          <Tab>By Chain</Tab>
+          <Tab>By Protocol</Tab>
+        </TabList>
 
-              {/* Protocol Details */}
-              <ProtocolDetailsAccordion positions={holding.positions} />
+        <TabPanels>
+          {/* Overview Tab */}
+          <TabPanel>
+            <VStack spacing={6} align="stretch">
+              {filtered.map((chain) => (
+                <Card key={chain.chain} variant="neon">
+                  <CardHeader>
+                    <HStack justify="space-between">
+                      <HStack spacing={3}>
+                        <Avatar size="sm" name={chain.chain} src="" />
+                        <VStack align="start" spacing={0}>
+                          <Text fontWeight="bold" color="text.primary">
+                            {chain.chain}
+                          </Text>
+                          <Text fontSize="sm" color="text.secondary">
+                            {chain.positions.length} positions
+                          </Text>
+                        </VStack>
+                      </HStack>
+                      <VStack align="end" spacing={0}>
+                        <Text fontWeight="bold" color="text.primary">
+                          ${chain.positions.reduce((sum, p) => sum + p.balance, 0).toLocaleString()}
+                        </Text>
+                        <Text fontSize="sm" color="text.secondary">
+                          {chain.positions.reduce((sum, p) => sum + (p.apy || 0), 0) / chain.positions.length}% APY
+                        </Text>
+                      </VStack>
+                    </HStack>
+                  </CardHeader>
+                  <CardBody pt={0}>
+                    <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={4}>
+                      {chain.positions.map((position) => (
+                        <Box
+                          key={position.name}
+                          p={4}
+                          bg="glass.50"
+                          borderRadius="lg"
+                          border="1px solid"
+                          borderColor="glass.200"
+                          _hover={{
+                            bg: 'glass.100',
+                            borderColor: 'secondary.200',
+                            transform: 'translateY(-2px)',
+                            boxShadow: 'neon',
+                          }}
+                          transition="all 0.2s"
+                        >
+                          <HStack justify="space-between" mb={2}>
+                            <Text fontWeight="600" color="text.primary">
+                              {position.name}
+                            </Text>
+                            <Badge
+                              colorScheme={getRiskColor(position.risk)}
+                              variant="subtle"
+                              fontSize="xs"
+                            >
+                              {position.risk || 'Low'}
+                            </Badge>
+                          </HStack>
+                          
+                          <VStack align="start" spacing={1}>
+                            <Text fontSize="sm" color="text.secondary">
+                              Balance: ${position.balance.toLocaleString()}
+                            </Text>
+                            <Text fontSize="sm" color="text.secondary">
+                              APY: {position.apy || 0}%
+                            </Text>
+                            <Text fontSize="sm" color="text.secondary">
+                              Category: {position.category}
+                            </Text>
+                          </VStack>
+                        </Box>
+                      ))}
+                    </SimpleGrid>
+                  </CardBody>
+                </Card>
+              ))}
             </VStack>
-          </NeumorphicCard>
-        ))}
-      </VStack>
+          </TabPanel>
 
-      {/* Empty State */}
-      {filtered.length === 0 && (
-        <NeumorphicCard variant="default" animation="fade-in">
-          <VStack spacing={4} py={8}>
-            <Icon as={ViewIcon} boxSize={12} color="text.tertiary" />
-            <Text fontSize="lg" color="text.secondary" fontWeight="600">
-              No holdings found
-            </Text>
-            <Text fontSize="sm" color="text.tertiary" textAlign="center">
-              Try adjusting your filters or search terms
-            </Text>
-          </VStack>
-        </NeumorphicCard>
-      )}
+          {/* By Chain Tab */}
+          <TabPanel>
+            <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
+              {filtered.map((chain) => (
+                <Card key={chain.chain} variant="glass">
+                  <CardHeader>
+                    <HStack justify="space-between">
+                      <HStack spacing={3}>
+                        <Text fontSize="2xl">{getChainIcon(chain.chain)}</Text>
+                        <VStack align="start" spacing={0}>
+                          <Text fontWeight="bold" color="text.primary">
+                            {chain.chain}
+                          </Text>
+                          <Text fontSize="sm" color="text.secondary">
+                            {chain.positions.length} positions
+                          </Text>
+                        </VStack>
+                      </HStack>
+                    </HStack>
+                  </CardHeader>
+                  <CardBody pt={0}>
+                    <VStack spacing={4} align="stretch">
+                      <Box>
+                        <HStack justify="space-between" mb={2}>
+                          <Text fontSize="sm" color="text.secondary">Total Value</Text>
+                          <Text fontSize="sm" fontWeight="bold" color="text.primary">
+                            ${chain.positions.reduce((sum, p) => sum + p.balance, 0).toLocaleString()}
+                          </Text>
+                        </HStack>
+                        <Progress
+                          value={chain.positions.reduce((sum, p) => sum + p.balance, 0) / totalValue * 100}
+                          colorScheme="secondary"
+                          borderRadius="full"
+                          size="sm"
+                        />
+                      </Box>
+                      
+                      <Box>
+                        <HStack justify="space-between" mb={2}>
+                          <Text fontSize="sm" color="text.secondary">Average APY</Text>
+                          <Text fontSize="sm" fontWeight="bold" color="success.500">
+                            {(chain.positions.reduce((sum, p) => sum + (p.apy || 0), 0) / chain.positions.length).toFixed(2)}%
+                          </Text>
+                        </HStack>
+                      </Box>
+                    </VStack>
+                  </CardBody>
+                </Card>
+              ))}
+            </SimpleGrid>
+          </TabPanel>
+
+          {/* By Protocol Tab */}
+          <TabPanel>
+            <VStack spacing={4} align="stretch">
+              {filtered.flatMap(chain => 
+                chain.positions.map(position => ({
+                  ...position,
+                  chain: chain.chain
+                }))
+              ).map((position, index) => (
+                <Card key={`${position.chain}-${position.name}-${index}`} variant="glass">
+                  <CardBody>
+                    <HStack justify="space-between">
+                      <HStack spacing={4}>
+                        <Avatar size="md" name={position.name} src="" />
+                        <VStack align="start" spacing={1}>
+                          <Text fontWeight="bold" color="text.primary">
+                            {position.name}
+                          </Text>
+                          <Text fontSize="sm" color="text.secondary">
+                            {position.chain} • {position.category}
+                          </Text>
+                        </VStack>
+                      </HStack>
+                      
+                      <VStack align="end" spacing={1}>
+                        <Text fontWeight="bold" color="text.primary">
+                          ${position.balance.toLocaleString()}
+                        </Text>
+                        <Text fontSize="sm" color="success.500">
+                          {position.apy || 0}% APY
+                        </Text>
+                        <Badge
+                          colorScheme={getRiskColor(position.risk)}
+                          variant="subtle"
+                          fontSize="xs"
+                        >
+                          {position.risk || 'Low'} Risk
+                        </Badge>
+                      </VStack>
+                    </HStack>
+                  </CardBody>
+                </Card>
+              ))}
+            </VStack>
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
     </VStack>
   );
 };

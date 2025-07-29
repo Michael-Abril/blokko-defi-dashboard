@@ -1,42 +1,58 @@
 import { extendTheme } from '@chakra-ui/react';
 
-// Futuristic Color Palette - Inspired by blokko-defi-token-swap
+// Futuristic Design System - Professional DeFi Dashboard
 const colors = {
-  // Primary Brand Colors (from token-swap)
+  // Primary Brand Colors
   brand: {
     50: '#E6F3FF',
     100: '#B3D9FF',
     200: '#80BFFF',
     300: '#4DA6FF',
     400: '#1A8CFF',
-    500: '#0A2540', // Deep trustworthy blue from token-swap
+    500: '#0A2540', // Deep trustworthy blue
     600: '#051726',
     700: '#004480',
     800: '#002D4D',
     900: '#00161A',
   },
   
-  // Secondary Colors (from token-swap)
+  // Secondary Colors
   secondary: {
     50: '#E6FFFD',
     100: '#B3FFF8',
     200: '#80FFF3',
     300: '#4DFFEE',
     400: '#1AFFE9',
-    500: '#00D4C8', // Vibrant cyan/teal accent from token-swap
+    500: '#00D4C8', // Vibrant cyan/teal
     600: '#00B4A6',
     700: '#00948C',
     800: '#007472',
     900: '#005458',
   },
   
-  // Neumorphic Surface Colors
-  surface: {
-    50: '#F6F9FC',   // Very light grey/off-white from token-swap
-    100: '#F1F5F9',  // Light surface
-    200: '#E2E8F0',  // Medium surface
-    300: '#CBD5E1',  // Dark surface
-    400: '#94A3B8',  // Border surface
+  // Glassmorphism Colors
+  glass: {
+    50: 'rgba(255, 255, 255, 0.05)',
+    100: 'rgba(255, 255, 255, 0.1)',
+    200: 'rgba(255, 255, 255, 0.15)',
+    300: 'rgba(255, 255, 255, 0.2)',
+    400: 'rgba(255, 255, 255, 0.25)',
+    500: 'rgba(255, 255, 255, 0.3)',
+  },
+  
+  // Dark Theme Colors
+  dark: {
+    50: '#F8FAFC',
+    100: '#F1F5F9',
+    200: '#E2E8F0',
+    300: '#CBD5E1',
+    400: '#94A3B8',
+    500: '#64748B',
+    600: '#475569',
+    700: '#334155',
+    800: '#1E293B',
+    900: '#0F172A',
+    950: '#020617',
   },
   
   // Status Colors
@@ -46,7 +62,7 @@ const colors = {
     200: '#BBF7D0',
     300: '#86EFAC',
     400: '#4ADE80',
-    500: '#10B981', // Success green from token-swap
+    500: '#10B981',
     600: '#16A34A',
     700: '#15803D',
     800: '#166534',
@@ -59,7 +75,7 @@ const colors = {
     200: '#FDE68A',
     300: '#FCD34D',
     400: '#FBBF24',
-    500: '#F59E0B', // Warning amber from token-swap
+    500: '#F59E0B',
     600: '#D97706',
     700: '#B45309',
     800: '#92400E',
@@ -72,7 +88,7 @@ const colors = {
     200: '#FECACA',
     300: '#FCA5A5',
     400: '#F87171',
-    500: '#EF4444', // Error red from token-swap
+    500: '#EF4444',
     600: '#DC2626',
     700: '#B91C1C',
     800: '#991B1B',
@@ -81,9 +97,9 @@ const colors = {
   
   // Risk Score Colors
   risk: {
-    low: '#10B981',    // Green for low risk
-    medium: '#F59E0B', // Amber for medium risk
-    high: '#EF4444',   // Red for high risk
+    low: '#10B981',
+    medium: '#F59E0B',
+    high: '#EF4444',
   },
   
   // Gradient Colors
@@ -94,25 +110,27 @@ const colors = {
     warning: 'linear-gradient(135deg, #F59E0B 0%, #D97706 100%)',
     error: 'linear-gradient(135deg, #EF4444 0%, #DC2626 100%)',
     brand: 'linear-gradient(135deg, #0A2540 0%, #00D4C8 100%)',
+    glass: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)',
+    neon: 'linear-gradient(135deg, rgba(0, 212, 200, 0.1) 0%, rgba(10, 37, 64, 0.1) 100%)',
   },
   
-  // Text Colors (from token-swap)
+  // Text Colors
   text: {
-    primary: '#0A2540',    // Deep blue from token-swap
-    secondary: '#64748B',  // Medium slate from token-swap
-    tertiary: '#94A3B8',   // Light slate for tertiary text
-    inverse: '#FFFFFF',    // White for inverse text
+    primary: '#0A2540',
+    secondary: '#64748B',
+    tertiary: '#94A3B8',
+    inverse: '#FFFFFF',
   },
   
-  // Background Colors (from token-swap)
+  // Background Colors
   background: {
-    primary: '#F6F9FC',    // Very light grey/off-white from token-swap
-    secondary: '#F1F5F9',  // Slightly darker background
-    tertiary: '#E2E8F0',   // Card background
-    overlay: 'rgba(0, 0, 0, 0.5)', // Modal overlay
+    primary: '#F6F9FC',
+    secondary: '#F1F5F9',
+    tertiary: '#E2E8F0',
+    overlay: 'rgba(0, 0, 0, 0.5)',
   },
 
-  // Standard Chakra UI colors that might be referenced
+  // Standard Chakra UI colors
   gray: {
     50: '#F9FAFB',
     100: '#F3F4F6',
@@ -177,192 +195,134 @@ const colors = {
     800: '#92400E',
     900: '#78350F',
   },
-};
 
-// Typography Scale
-const fonts = {
-  heading: `'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`,
-  body: `'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`,
-  mono: `'JetBrains Mono', 'Fira Code', 'Monaco', 'Consolas', monospace`,
-};
-
-const fontSizes = {
-  xs: '0.75rem',    // 12px
-  sm: '0.875rem',   // 14px
-  md: '1rem',       // 16px
-  lg: '1.125rem',   // 18px
-  xl: '1.25rem',    // 20px
-  '2xl': '1.5rem',  // 24px
-  '3xl': '1.875rem', // 30px
-  '4xl': '2.25rem',  // 36px
-  '5xl': '3rem',     // 48px
-  '6xl': '3.75rem',  // 60px
-};
-
-// Spacing Scale
-const space = {
-  0: '0',
-  1: '0.25rem',   // 4px
-  2: '0.5rem',    // 8px
-  3: '0.75rem',   // 12px
-  4: '1rem',      // 16px
-  5: '1.25rem',   // 20px
-  6: '1.5rem',    // 24px
-  8: '2rem',      // 32px
-  10: '2.5rem',   // 40px
-  12: '3rem',     // 48px
-  16: '4rem',     // 64px
-  20: '5rem',     // 80px
-  24: '6rem',     // 96px
-  32: '8rem',     // 128px
-};
-
-// Border Radius Scale
-const radii = {
-  none: '0',
-  sm: '0.125rem',   // 2px
-  base: '0.25rem',  // 4px
-  md: '0.375rem',   // 6px
-  lg: '0.5rem',     // 8px
-  xl: '0.75rem',    // 12px
-  '2xl': '1rem',    // 16px
-  '3xl': '1.5rem',  // 24px
-  full: '9999px',
-};
-
-// Shadow System for Neumorphism
-const shadows = {
-  // Soft shadows for neumorphic effect
-  soft: {
-    sm: '2px 2px 4px rgba(10, 37, 64, 0.1), -2px -2px 4px rgba(255, 255, 255, 0.8)',
-    md: '4px 4px 8px rgba(10, 37, 64, 0.1), -4px -4px 8px rgba(255, 255, 255, 0.8)',
-    lg: '8px 8px 16px rgba(10, 37, 64, 0.1), -8px -8px 16px rgba(255, 255, 255, 0.8)',
-    xl: '12px 12px 24px rgba(10, 37, 64, 0.1), -12px -12px 24px rgba(255, 255, 255, 0.8)',
+  purple: {
+    50: '#FAF5FF',
+    100: '#F3E8FF',
+    200: '#E9D5FF',
+    300: '#D8B4FE',
+    400: '#C084FC',
+    500: '#A855F7',
+    600: '#9333EA',
+    700: '#7C3AED',
+    800: '#6B21A8',
+    900: '#581C87',
   },
-  // Pressed state shadows
-  pressed: {
-    sm: 'inset 2px 2px 4px rgba(10, 37, 64, 0.1), inset -2px -2px 4px rgba(255, 255, 255, 0.8)',
-    md: 'inset 4px 4px 8px rgba(10, 37, 64, 0.1), inset -4px -4px 8px rgba(255, 255, 255, 0.8)',
-    lg: 'inset 8px 8px 16px rgba(10, 37, 64, 0.1), inset -8px -8px 16px rgba(255, 255, 255, 0.8)',
-  },
-  // Regular shadows for depth
-  base: '0 1px 3px 0 rgba(10, 37, 64, 0.1), 0 1px 2px 0 rgba(10, 37, 64, 0.06)',
-  md: '0 4px 6px -1px rgba(10, 37, 64, 0.1), 0 2px 4px -1px rgba(10, 37, 64, 0.06)',
-  lg: '0 10px 15px -3px rgba(10, 37, 64, 0.1), 0 4px 6px -2px rgba(10, 37, 64, 0.05)',
-  xl: '0 20px 25px -5px rgba(10, 37, 64, 0.1), 0 10px 10px -5px rgba(10, 37, 64, 0.04)',
-  '2xl': '0 25px 50px -12px rgba(10, 37, 64, 0.25)',
-  outline: '0 0 0 3px rgba(0, 212, 200, 0.6)',
-  none: 'none',
 };
 
-// Breakpoints for responsive design
-const breakpoints = {
-  sm: '30em',   // 480px
-  md: '48em',   // 768px
-  lg: '62em',   // 992px
-  xl: '80em',   // 1280px
-  '2xl': '96em', // 1536px
-};
-
-// Component-specific styles
+// Custom Components
 const components = {
   Button: {
     baseStyle: {
       fontWeight: '600',
       borderRadius: 'lg',
       _focus: {
-        boxShadow: 'outline',
+        boxShadow: '0 0 0 3px rgba(0, 212, 200, 0.3)',
       },
     },
     variants: {
-      // Neumorphic button variants
-      neumorphic: {
-        bg: 'surface.100',
-        color: 'text.primary',
-        boxShadow: 'soft.md',
-        _hover: {
-          boxShadow: 'soft.lg',
-          transform: 'translateY(-1px)',
-        },
-        _active: {
-          boxShadow: 'pressed.md',
-          transform: 'translateY(0px)',
-        },
-      },
-      'neumorphic-primary': {
-        bg: 'gradient.primary',
+      solid: {
+        bg: 'gradient.brand',
         color: 'white',
-        boxShadow: 'soft.md',
-        _hover: {
-          bg: 'gradient.primary',
-          boxShadow: 'soft.lg',
-          transform: 'translateY(-1px)',
-        },
-        _active: {
-          boxShadow: 'pressed.md',
-          transform: 'translateY(0px)',
-        },
-      },
-      'neumorphic-secondary': {
-        bg: 'gradient.secondary',
-        color: 'white',
-        boxShadow: 'soft.md',
         _hover: {
           bg: 'gradient.secondary',
-          boxShadow: 'soft.lg',
-          transform: 'translateY(-1px)',
+          transform: 'translateY(-2px)',
+          boxShadow: '0 10px 25px rgba(0, 212, 200, 0.3)',
         },
         _active: {
-          boxShadow: 'pressed.md',
-          transform: 'translateY(0px)',
+          transform: 'translateY(0)',
         },
       },
-      'neumorphic-success': {
-        bg: 'gradient.success',
-        color: 'white',
-        boxShadow: 'soft.md',
+      glass: {
+        bg: 'glass.200',
+        backdropFilter: 'blur(10px)',
+        border: '1px solid',
+        borderColor: 'glass.300',
+        color: 'text.primary',
         _hover: {
-          bg: 'gradient.success',
-          boxShadow: 'soft.lg',
-          transform: 'translateY(-1px)',
-        },
-        _active: {
-          boxShadow: 'pressed.md',
-          transform: 'translateY(0px)',
+          bg: 'glass.300',
+          borderColor: 'secondary.500',
+          boxShadow: '0 0 20px rgba(0, 212, 200, 0.2)',
         },
       },
-    },
-    sizes: {
-      sm: {
-        fontSize: 'sm',
-        px: 3,
-        py: 2,
-        h: 'auto',
-      },
-      md: {
-        fontSize: 'md',
-        px: 4,
-        py: 3,
-        h: 'auto',
-      },
-      lg: {
-        fontSize: 'lg',
-        px: 6,
-        py: 4,
-        h: 'auto',
+      neon: {
+        bg: 'transparent',
+        border: '2px solid',
+        borderColor: 'secondary.500',
+        color: 'secondary.500',
+        _hover: {
+          bg: 'secondary.500',
+          color: 'white',
+          boxShadow: '0 0 20px rgba(0, 212, 200, 0.5)',
+        },
       },
     },
   },
   
   Card: {
     baseStyle: {
-      bg: 'surface.100',
-      borderRadius: 'xl',
-      boxShadow: 'soft.md',
-      p: 6,
-      _hover: {
-        boxShadow: 'soft.lg',
-        transform: 'translateY(-2px)',
+      container: {
+        bg: 'white',
+        borderRadius: 'xl',
+        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+        border: '1px solid',
+        borderColor: 'gray.200',
+        _hover: {
+          boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)',
+          transform: 'translateY(-2px)',
+        },
+        transition: 'all 0.3s ease',
+      },
+    },
+    variants: {
+      glass: {
+        container: {
+          bg: 'glass.100',
+          backdropFilter: 'blur(10px)',
+          border: '1px solid',
+          borderColor: 'glass.300',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+        },
+      },
+      neon: {
+        container: {
+          bg: 'white',
+          border: '1px solid',
+          borderColor: 'secondary.200',
+          boxShadow: '0 0 20px rgba(0, 212, 200, 0.1)',
+          _hover: {
+            borderColor: 'secondary.500',
+            boxShadow: '0 0 30px rgba(0, 212, 200, 0.2)',
+          },
+        },
+      },
+    },
+  },
+  
+  Input: {
+    baseStyle: {
+      field: {
+        borderRadius: 'lg',
+        border: '1px solid',
+        borderColor: 'gray.300',
+        _focus: {
+          borderColor: 'secondary.500',
+          boxShadow: '0 0 0 3px rgba(0, 212, 200, 0.1)',
+        },
+      },
+    },
+  },
+  
+  Select: {
+    baseStyle: {
+      field: {
+        borderRadius: 'lg',
+        border: '1px solid',
+        borderColor: 'gray.300',
+        _focus: {
+          borderColor: 'secondary.500',
+          boxShadow: '0 0 0 3px rgba(0, 212, 200, 0.1)',
+        },
       },
     },
   },
@@ -372,78 +332,137 @@ const components = {
       borderRadius: 'full',
       fontWeight: '600',
       fontSize: 'xs',
-      px: 2,
-      py: 1,
     },
     variants: {
-      risk: {
-        low: {
-          bg: 'success.100',
-          color: 'success.700',
-        },
-        medium: {
-          bg: 'warning.100',
-          color: 'warning.700',
-        },
-        high: {
-          bg: 'error.100',
-          color: 'error.700',
-        },
-      },
-    },
-  },
-  
-  Input: {
-    baseStyle: {
-      field: {
-        bg: 'surface.50',
-        border: '1px solid',
-        borderColor: 'surface.300',
-        borderRadius: 'lg',
-        _focus: {
-          borderColor: 'secondary.500',
-          boxShadow: 'outline',
-        },
-        _hover: {
-          borderColor: 'surface.400',
-        },
-      },
-    },
-  },
-  
-  Select: {
-    baseStyle: {
-      field: {
-        bg: 'surface.50',
-        border: '1px solid',
-        borderColor: 'surface.300',
-        borderRadius: 'lg',
-        _focus: {
-          borderColor: 'secondary.500',
-          boxShadow: 'outline',
-        },
-        _hover: {
-          borderColor: 'surface.400',
-        },
+      neon: {
+        bg: 'secondary.500',
+        color: 'white',
+        boxShadow: '0 0 10px rgba(0, 212, 200, 0.3)',
       },
     },
   },
 };
 
-// Animation configurations
-const config = {
-  initialColorMode: 'light',
-  useSystemColorMode: false,
+// Typography
+const fonts = {
+  heading: 'Inter, system-ui, sans-serif',
+  body: 'Inter, system-ui, sans-serif',
 };
 
-export const theme = extendTheme({
+// Spacing
+const space = {
+  px: '1px',
+  0.5: '0.125rem',
+  1: '0.25rem',
+  1.5: '0.375rem',
+  2: '0.5rem',
+  2.5: '0.625rem',
+  3: '0.75rem',
+  3.5: '0.875rem',
+  4: '1rem',
+  5: '1.25rem',
+  6: '1.5rem',
+  7: '1.75rem',
+  8: '2rem',
+  9: '2.25rem',
+  10: '2.5rem',
+  12: '3rem',
+  14: '3.5rem',
+  16: '4rem',
+  20: '5rem',
+  24: '6rem',
+  28: '7rem',
+  32: '8rem',
+  36: '9rem',
+  40: '10rem',
+  44: '11rem',
+  48: '12rem',
+  52: '13rem',
+  56: '14rem',
+  60: '15rem',
+  64: '16rem',
+  72: '18rem',
+  80: '20rem',
+  96: '24rem',
+};
+
+// Border Radius
+const radii = {
+  none: '0',
+  sm: '0.125rem',
+  base: '0.25rem',
+  md: '0.375rem',
+  lg: '0.5rem',
+  xl: '0.75rem',
+  '2xl': '1rem',
+  '3xl': '1.5rem',
+  full: '9999px',
+};
+
+// Shadows
+const shadows = {
+  xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',
+  sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+  base: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+  md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+  lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+  xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+  '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+  outline: '0 0 0 3px rgba(0, 212, 200, 0.3)',
+  inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
+  none: 'none',
+  neon: '0 0 20px rgba(0, 212, 200, 0.3)',
+  glass: '0 8px 32px rgba(0, 0, 0, 0.1)',
+};
+
+// Breakpoints
+const breakpoints = {
+  sm: '30em',
+  md: '48em',
+  lg: '62em',
+  xl: '80em',
+  '2xl': '96em',
+};
+
+// Z-Index
+const zIndices = {
+  hide: -1,
+  auto: 'auto',
+  base: 0,
+  docked: 10,
+  dropdown: 1000,
+  sticky: 1100,
+  banner: 1200,
+  overlay: 1300,
+  modal: 1400,
+  popover: 1500,
+  skipLink: 1600,
+  toast: 1700,
+  tooltip: 1800,
+};
+
+const theme = extendTheme({
   colors,
+  components,
   fonts,
-  fontSizes,
   space,
   radii,
   shadows,
   breakpoints,
-  components,
-  config,
+  zIndices,
+  config: {
+    initialColorMode: 'light',
+    useSystemColorMode: false,
+  },
+  styles: {
+    global: {
+      body: {
+        bg: 'background.primary',
+        color: 'text.primary',
+        fontFamily: 'body',
+      },
+    },
+  },
 });
+
+export { theme };
