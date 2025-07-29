@@ -36,7 +36,7 @@ function App() {
           </Route>
         </Routes>
 
-        {/* Global AI Agent Overlay - Temporarily disabled for debugging */}
+        {/* Global AI Agent Overlay - Temporarily disabled to avoid routing issues */}
         {/* <AIAgentOverlay /> */}
       </Router>
     </Box>
