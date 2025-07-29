@@ -1,145 +1,260 @@
+import { Box, VStack, HStack, Heading, Text, SimpleGrid, Card, CardBody, Stat, StatLabel, StatNumber, StatHelpText, StatArrow, Badge, Button } from '@chakra-ui/react';
+
 function App() {
   return (
-    <div style={{ 
-      backgroundColor: '#f7fafc', 
-      color: '#2d3748', 
-      minHeight: '100vh',
-      padding: '20px',
-      fontFamily: 'Arial, sans-serif'
-    }}>
+    <Box bg="gray.50" color="gray.800" minH="100vh" p={8}>
       {/* Test message to verify deployment */}
-      <div style={{
-        position: 'fixed',
-        top: '10px',
-        right: '10px',
-        backgroundColor: '#e53e3e',
-        color: 'white',
-        padding: '8px 12px',
-        borderRadius: '6px',
-        fontSize: '14px',
-        zIndex: 9999
-      }}>
+      <Box 
+        position="fixed" 
+        top="10px" 
+        right="10px" 
+        bg="red.500" 
+        color="white" 
+        p={2} 
+        borderRadius="md" 
+        zIndex={9999}
+        fontSize="sm"
+      >
         DEPLOYMENT TEST - {new Date().toLocaleTimeString()}
-      </div>
+      </Box>
       
-      {/* Simple test content */}
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        <h1 style={{ 
-          fontSize: '2.5rem', 
-          fontWeight: 'bold',
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          marginBottom: '10px'
-        }}>
-          🚀 Blokko DeFi Dashboard
-        </h1>
+      {/* Main Content */}
+      <VStack spacing={8} align="stretch" maxW="1200px" mx="auto">
+        {/* Header */}
+        <Box>
+          <Heading 
+            size="2xl" 
+            bgGradient="linear(to-r, blue.500, purple.500)" 
+            bgClip="text"
+            fontWeight="800"
+            mb={2}
+          >
+            🚀 Blokko DeFi Dashboard
+          </Heading>
+          <Text color="gray.600" fontSize="lg">
+            Welcome back! Here's your portfolio overview and latest activity.
+          </Text>
+        </Box>
         
-        <p style={{ fontSize: '1.2rem', color: '#4a5568', marginBottom: '30px' }}>
-          Welcome back! Here's your portfolio overview and latest activity.
-        </p>
-        
-        {/* Portfolio Cards */}
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-          gap: '20px',
-          marginBottom: '30px'
-        }}>
-          <div style={{
-            backgroundColor: 'white',
-            padding: '20px',
-            borderRadius: '8px',
-            border: '1px solid #e2e8f0',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-          }}>
-            <h3 style={{ color: '#4a5568', marginBottom: '10px' }}>Portfolio Value</h3>
-            <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#2d3748' }}>$250,000</div>
-            <div style={{ color: '#38a169', fontSize: '0.9rem' }}>↗ 12.5% from last month</div>
-          </div>
-          
-          <div style={{
-            backgroundColor: 'white',
-            padding: '20px',
-            borderRadius: '8px',
-            border: '1px solid #e2e8f0',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-          }}>
-            <h3 style={{ color: '#4a5568', marginBottom: '10px' }}>Active Networks</h3>
-            <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#2d3748' }}>4</div>
-            <div style={{ color: '#38a169', fontSize: '0.9rem' }}>↗ 2 new this month</div>
-          </div>
-          
-          <div style={{
-            backgroundColor: 'white',
-            padding: '20px',
-            borderRadius: '8px',
-            border: '1px solid #e2e8f0',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-          }}>
-            <h3 style={{ color: '#4a5568', marginBottom: '10px' }}>Active Positions</h3>
-            <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#2d3748' }}>12</div>
-            <div style={{ color: '#38a169', fontSize: '0.9rem' }}>↗ 3 new positions</div>
-          </div>
-          
-          <div style={{
-            backgroundColor: 'white',
-            padding: '20px',
-            borderRadius: '8px',
-            border: '1px solid #e2e8f0',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-          }}>
-            <h3 style={{ color: '#4a5568', marginBottom: '10px' }}>Current APY</h3>
-            <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#38a169' }}>8.75%</div>
-            <div style={{ color: '#38a169', fontSize: '0.9rem' }}>↗ 0.8% increase</div>
-          </div>
-        </div>
+        {/* Portfolio Overview Cards */}
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6}>
+          <Card variant="outline">
+            <CardBody>
+              <Stat>
+                <StatLabel color="gray.600">Portfolio Value</StatLabel>
+                <StatNumber color="gray.800" fontSize="2xl">
+                  $250,000
+                </StatNumber>
+                <StatHelpText>
+                  <StatArrow type="increase" />
+                  12.5% from last month
+                </StatHelpText>
+              </Stat>
+            </CardBody>
+          </Card>
+
+          <Card variant="outline">
+            <CardBody>
+              <Stat>
+                <StatLabel color="gray.600">Active Networks</StatLabel>
+                <StatNumber color="gray.800" fontSize="2xl">
+                  4
+                </StatNumber>
+                <StatHelpText>
+                  <StatArrow type="increase" />
+                  2 new this month
+                </StatHelpText>
+              </Stat>
+            </CardBody>
+          </Card>
+
+          <Card variant="outline">
+            <CardBody>
+              <Stat>
+                <StatLabel color="gray.600">Active Positions</StatLabel>
+                <StatNumber color="gray.800" fontSize="2xl">
+                  12
+                </StatNumber>
+                <StatHelpText>
+                  <StatArrow type="increase" />
+                  3 new positions
+                </StatHelpText>
+              </Stat>
+            </CardBody>
+          </Card>
+
+          <Card variant="outline">
+            <CardBody>
+              <Stat>
+                <StatLabel color="gray.600">Current APY</StatLabel>
+                <StatNumber color="green.500" fontSize="2xl">
+                  8.75%
+                </StatNumber>
+                <StatHelpText>
+                  <StatArrow type="increase" />
+                  0.8% increase
+                </StatHelpText>
+              </Stat>
+            </CardBody>
+          </Card>
+        </SimpleGrid>
+
+        {/* Growth Strategies */}
+        <VStack align="stretch" spacing={6}>
+          <Heading size="lg" color="gray.800">
+            Growth Strategies
+          </Heading>
+          <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
+            <Card variant="outline">
+              <CardBody>
+                <VStack align="stretch" spacing={4}>
+                  <VStack align="stretch" spacing={2}>
+                    <Heading size="md" color="gray.800">
+                      Conservative Yield
+                    </Heading>
+                    <Text fontSize="sm" color="gray.600">
+                      Stable returns with minimal risk
+                    </Text>
+                  </VStack>
+                  <VStack align="stretch" spacing={2}>
+                    <HStack justify="space-between">
+                      <Text fontSize="sm" color="gray.600">Risk Level</Text>
+                      <Badge colorScheme="green">Low</Badge>
+                    </HStack>
+                    <HStack justify="space-between">
+                      <Text fontSize="sm" color="gray.600">Expected APY</Text>
+                      <Text fontSize="sm" fontWeight="bold" color="green.500">
+                        6.5%
+                      </Text>
+                    </HStack>
+                    <HStack justify="space-between">
+                      <Text fontSize="sm" color="gray.600">Min Investment</Text>
+                      <Text fontSize="sm" fontWeight="bold" color="gray.800">
+                        $10,000
+                      </Text>
+                    </HStack>
+                  </VStack>
+                  <Button size="sm" variant="solid" colorScheme="blue">
+                    Apply Strategy
+                  </Button>
+                </VStack>
+              </CardBody>
+            </Card>
+
+            <Card variant="outline">
+              <CardBody>
+                <VStack align="stretch" spacing={4}>
+                  <VStack align="stretch" spacing={2}>
+                    <Heading size="md" color="gray.800">
+                      Balanced Growth
+                    </Heading>
+                    <Text fontSize="sm" color="gray.600">
+                      Moderate risk for higher returns
+                    </Text>
+                  </VStack>
+                  <VStack align="stretch" spacing={2}>
+                    <HStack justify="space-between">
+                      <Text fontSize="sm" color="gray.600">Risk Level</Text>
+                      <Badge colorScheme="yellow">Medium</Badge>
+                    </HStack>
+                    <HStack justify="space-between">
+                      <Text fontSize="sm" color="gray.600">Expected APY</Text>
+                      <Text fontSize="sm" fontWeight="bold" color="green.500">
+                        9.2%
+                      </Text>
+                    </HStack>
+                    <HStack justify="space-between">
+                      <Text fontSize="sm" color="gray.600">Min Investment</Text>
+                      <Text fontSize="sm" fontWeight="bold" color="gray.800">
+                        $25,000
+                      </Text>
+                    </HStack>
+                  </VStack>
+                  <Button size="sm" variant="solid" colorScheme="blue">
+                    Apply Strategy
+                  </Button>
+                </VStack>
+              </CardBody>
+            </Card>
+
+            <Card variant="outline">
+              <CardBody>
+                <VStack align="stretch" spacing={4}>
+                  <VStack align="stretch" spacing={2}>
+                    <Heading size="md" color="gray.800">
+                      Aggressive DeFi
+                    </Heading>
+                    <Text fontSize="sm" color="gray.600">
+                      High risk, high reward strategies
+                    </Text>
+                  </VStack>
+                  <VStack align="stretch" spacing={2}>
+                    <HStack justify="space-between">
+                      <Text fontSize="sm" color="gray.600">Risk Level</Text>
+                      <Badge colorScheme="red">High</Badge>
+                    </HStack>
+                    <HStack justify="space-between">
+                      <Text fontSize="sm" color="gray.600">Expected APY</Text>
+                      <Text fontSize="sm" fontWeight="bold" color="green.500">
+                        15.8%
+                      </Text>
+                    </HStack>
+                    <HStack justify="space-between">
+                      <Text fontSize="sm" color="gray.600">Min Investment</Text>
+                      <Text fontSize="sm" fontWeight="bold" color="gray.800">
+                        $50,000
+                      </Text>
+                    </HStack>
+                  </VStack>
+                  <Button size="sm" variant="solid" colorScheme="blue">
+                    Apply Strategy
+                  </Button>
+                </VStack>
+              </CardBody>
+            </Card>
+          </SimpleGrid>
+        </VStack>
         
         {/* Success Message */}
-        <div style={{
-          backgroundColor: '#f0fff4',
-          border: '2px solid #68d391',
-          borderRadius: '8px',
-          padding: '20px',
-          marginTop: '30px'
-        }}>
-          <h2 style={{ color: '#22543d', marginBottom: '10px' }}>✅ Dashboard Successfully Loaded!</h2>
-          <p style={{ color: '#22543d', marginBottom: '15px' }}>
-            The Blokko DeFi Dashboard is now fully functional on GitHub Pages. 
-            All components are rendering correctly and the JavaScript is working properly.
-          </p>
-          <div style={{
-            backgroundColor: '#c6f6d5',
-            border: '2px solid #68d391',
-            borderRadius: '6px',
-            padding: '15px'
-          }}>
-            <p style={{ color: '#22543d', fontWeight: 'bold', margin: 0 }}>
-              🎉 SUCCESS: The React application is rendering correctly on GitHub Pages!
-            </p>
-          </div>
-        </div>
-      </div>
+        <Card variant="outline" bg="green.50" borderColor="green.200">
+          <CardBody>
+            <VStack align="stretch" spacing={4}>
+              <Heading size="md" color="green.800">✅ Dashboard Successfully Loaded!</Heading>
+              <Text color="green.700">
+                The Blokko DeFi Dashboard is now fully functional on GitHub Pages. 
+                All components are rendering correctly and the JavaScript is working properly.
+              </Text>
+              <Box p={4} bg="green.100" borderRadius="md" border="2px solid" borderColor="green.300">
+                <Text color="green.800" fontWeight="bold">
+                  🎉 SUCCESS: The React application is rendering correctly on GitHub Pages!
+                </Text>
+              </Box>
+            </VStack>
+          </CardBody>
+        </Card>
+      </VStack>
       
       {/* Simple AI Chat Icon */}
-      <div style={{
-        position: 'fixed',
-        bottom: '20px',
-        right: '20px',
-        width: '60px',
-        height: '60px',
-        backgroundColor: '#38b2ac',
-        borderRadius: '50%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        cursor: 'pointer',
-        boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
-        zIndex: 1000
-      }}>
-        <span style={{ color: 'white', fontSize: '24px' }}>💬</span>
-      </div>
-    </div>
+      <Box
+        position="fixed"
+        bottom="20px"
+        right="20px"
+        width="60px"
+        height="60px"
+        bg="teal.500"
+        borderRadius="50%"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        cursor="pointer"
+        boxShadow="0 4px 8px rgba(0,0,0,0.2)"
+        zIndex={1000}
+        _hover={{ transform: 'scale(1.1)' }}
+        transition="transform 0.2s"
+      >
+        <Text color="white" fontSize="24px">💬</Text>
+      </Box>
+    </Box>
   );
 }
 
