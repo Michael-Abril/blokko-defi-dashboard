@@ -1,0 +1,16 @@
+{
+  "name": "blokko-defi-dashboard-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm:dev --workspace=frontend\" \"npm:start --workspace=backend\"",
+    "install:all": "npm install && npm install --prefix frontend && npm install --prefix backend"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

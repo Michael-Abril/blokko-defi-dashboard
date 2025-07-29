@@ -1,0 +1,42 @@
+export const mockOpportunities = [
+  {
+    protocol: 'GMX',
+    chain: 'Arbitrum',
+    category: 'Derivatives',
+    apy: 12.5,
+    blokkoRank: 1,
+    description: 'Trade perpetual contracts with low fees and deep liquidity.',
+  },
+  {
+    protocol: 'Velodrome',
+    chain: 'Optimism',
+    category: 'DEX',
+    apy: 9.5,
+    blokkoRank: 2,
+    description: 'Optimized for low-slippage trades on Optimism.',
+  },
+  {
+    protocol: 'Aave',
+    chain: 'Ethereum',
+    category: 'Lending',
+    apy: 5.2,
+    blokkoRank: 3,
+    description: 'The leading lending protocol on Ethereum.',
+  },
+  {
+    protocol: 'QuickSwap',
+    chain: 'Polygon',
+    category: 'DEX',
+    apy: 8.2,
+    blokkoRank: 4,
+    description: 'A fast and cheap DEX on the Polygon network.',
+  },
+  {
+    protocol: 'Curve',
+    chain: 'Ethereum',
+    category: 'DEX',
+    apy: 7.1,
+    blokkoRank: 5,
+    description: 'The best place to trade stablecoins.',
+  },
+];
