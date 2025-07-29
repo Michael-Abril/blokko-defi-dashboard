@@ -38,3 +38,6 @@ export const mockPortfolio = {
     },
   ],
 };
+
+// Add default export for compatibility
+export default mockPortfolio;

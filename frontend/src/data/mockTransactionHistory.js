@@ -8,3 +8,6 @@ export const mockTransactionHistory = [
   { id: 'txn7', date: '2023-10-26', type: 'Deposit', source: 'Manual', amount: 25000, currency: 'DAI' },
   { id: 'txn8', date: '2023-10-26', type: 'Yield', source: 'GMX', amount: 25.2, currency: 'USDC' },
 ];
+
+// Add default export for compatibility
+export default mockTransactionHistory;

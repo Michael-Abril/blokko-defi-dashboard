@@ -44,3 +44,6 @@ export const mockGrowthStrategies = [
     risk: 'High',
   },
 ];
+
+// Add default export for compatibility
+export default mockGrowthStrategies;

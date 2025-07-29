@@ -40,14 +40,6 @@ import {
   Pie,
   Cell,
 } from 'recharts';
-import { 
-  TrendingUpIcon, 
-  CurrencyDollarIcon, 
-  ChartBarIcon,
-  ClockIcon,
-  CheckCircleIcon,
-  ExclamationTriangleIcon
-} from '@heroicons/react/24/outline';
 import { useMetrics } from '../context/MetricsContext';
 import mockPortfolio from '../data/mockPortfolio';
 import mockGrowthStrategies from '../data/mockGrowthStrategies';
@@ -71,11 +63,14 @@ function Dashboard() {
     { name: 'Jun', value: 280000 },
   ];
 
-  const allocationData = mockPortfolio.map((item, index) => ({
-    name: item.protocol,
-    value: item.value,
-    color: COLORS[index % COLORS.length],
-  }));
+  // Create allocation data from mockPortfolio holdings
+  const allocationData = mockPortfolio.holdings.flatMap(chain => 
+    chain.positions.map(position => ({
+      name: position.name,
+      value: position.balance,
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+    }))
+  );
 
   const apyData = [
     { protocol: 'Aave', apy: 8.5 },
@@ -105,7 +100,7 @@ function Dashboard() {
               <Stat>
                 <StatLabel color="gray.600">Portfolio Value</StatLabel>
                 <StatNumber color="gray.800" fontSize="2xl">
-                  ${metrics?.portfolioValue?.toLocaleString() || '250,000'}
+                  ${mockPortfolio.portfolioValue.toLocaleString()}
                 </StatNumber>
                 <StatHelpText>
                   <StatArrow type="increase" />
@@ -120,7 +115,7 @@ function Dashboard() {
               <Stat>
                 <StatLabel color="gray.600">Active Networks</StatLabel>
                 <StatNumber color="gray.800" fontSize="2xl">
-                  {metrics?.activeNetworks || 4}
+                  {mockPortfolio.activeNetworks}
                 </StatNumber>
                 <StatHelpText>
                   <StatArrow type="increase" />
@@ -135,7 +130,7 @@ function Dashboard() {
               <Stat>
                 <StatLabel color="gray.600">Active Positions</StatLabel>
                 <StatNumber color="gray.800" fontSize="2xl">
-                  {metrics?.activePositions || 12}
+                  {mockPortfolio.activePositions}
                 </StatNumber>
                 <StatHelpText>
                   <StatArrow type="increase" />
@@ -150,7 +145,7 @@ function Dashboard() {
               <Stat>
                 <StatLabel color="gray.600">Current APY</StatLabel>
                 <StatNumber color="green.500" fontSize="2xl">
-                  {metrics?.currentApy || '8.75'}%
+                  {mockPortfolio.apy}%
                 </StatNumber>
                 <StatHelpText>
                   <StatArrow type="increase" />
@@ -290,20 +285,14 @@ function Dashboard() {
                         <Tr key={index}>
                           <Td>
                             <HStack spacing={2}>
-                              <Icon 
-                                as={tx.type === 'Deposit' ? CurrencyDollarIcon : TrendingUpIcon} 
-                                color={tx.type === 'Deposit' ? 'green.500' : 'blue.500'} 
-                              />
                               <Text fontSize="sm">{tx.type}</Text>
                             </HStack>
                           </Td>
                           <Td fontSize="sm">${tx.amount.toLocaleString()}</Td>
                           <Td>
-                            <Badge colorScheme={tx.status === 'Completed' ? 'green' : 'yellow'}>
-                              {tx.status}
-                            </Badge>
+                            <Badge colorScheme="green">Completed</Badge>
                           </Td>
-                          <Td fontSize="sm">{tx.time}</Td>
+                          <Td fontSize="sm">{tx.date}</Td>
                         </Tr>
                       ))}
                     </Tbody>

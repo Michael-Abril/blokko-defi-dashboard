@@ -8,3 +8,6 @@ export const mockTreasury = {
     { id: 'ext2', chain: 'Polygon', provider: 'JP Morgan Onyx', balance: 15000 },
   ],
 };
+
+// Add default export for compatibility
+export default mockTreasury;

@@ -37,3 +37,6 @@ export const mockUpcomingTx = [
     scheduledFor: '2024-08-20T09:15:00Z',
   },
 ];
+
+// Add default export for compatibility
+export default mockUpcomingTx;
